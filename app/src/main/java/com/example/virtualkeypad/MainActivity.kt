@@ -39,6 +39,7 @@ class MainActivity : Activity() {
                     Toast.makeText(this@MainActivity, "끝", Toast.LENGTH_SHORT).show()
                     }
                 else {
+                    //TODO 특정 5개의 범위의 좌표를 연속적으로 5번 터치할 때만 count하기
                     count++
                     val x = event.x
                     val y = event.y
