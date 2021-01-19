@@ -59,7 +59,14 @@ class MainActivity : Activity() {
                     var down1: Int = 0 // 제일 아래 좌표
                     var down2: Int = 0 // 제일 위 좌표
 
+
+
                     // 입력받은 좌표 중 아래쪽 좌표 2개의 "인덱스" 알아내기
+
+                    if (pointY[0] >= pointY[1]){
+                        down2 = 1
+                    }
+
                     for (i in 1..4) {
                         if ( pointY[down1] < pointY[i]){
                             down2 = down1
@@ -69,9 +76,30 @@ class MainActivity : Activity() {
                             down2 = i
                     }
 
+
+//                    for (i in 1..4) {
+//                        if (pointY[down1] <= pointY[i]) {
+//                            down1 = i
+//                        }
+//                    }
+//
+//                    for (i in 1..4) {
+//
+//                        if ((i != down1) &&  pointY[down2] <= pointY[i]) {
+//                            down2 = i
+//                        }
+//                    }
+
+
                     // 아쪽 좌표 2개의 인덱스를 downIdx에 저장
                     downIdx[0] = down1
                     downIdx[1] = down2
+
+                    if (down1 == down2) {
+                        val msg = "최댓값 좌표 같다: $down1 == $down2 "
+                        Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
+                        return true
+                    }
 
                     // 위쪽 좌표 3개의 인덱스를 upIdx에 저장
                     var tmpIdx: Int = 0
@@ -83,9 +111,11 @@ class MainActivity : Activity() {
                         }
                     }
 
-//                    // 위쪽과 아래쪽을 잘 나누는지 확인 --> 확인 완료
-//                    val msg = "위: ${pointY[upIdx[0]]} / ${pointY[upIdx[1]]}/ ${pointY[upIdx[2]]},\n  아래 : ${pointY[downIdx[0]]} / ${pointY[downIdx[1]]}"
-//                    Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
+                    // 위쪽과 아래쪽을 잘 나누는지 확인 --> 확인 완료
+                    val msg1 = "인덱스 - 위: ${upIdx[0]} / ${upIdx[1]}/ ${upIdx[2]},\n  아래 : ${downIdx[0]} / ${downIdx[1]}\n\n"
+                    val msg2 = "위: ${pointY[upIdx[0]]} / ${pointY[upIdx[1]]}/ ${pointY[upIdx[2]]},\n  아래 : ${pointY[downIdx[0]]} / ${pointY[downIdx[1]]}"
+                    val msg3 = msg1+msg2
+                    Toast.makeText(this@MainActivity, msg3, Toast.LENGTH_SHORT).show()
 
                     // ~~~x축 기준 정렬-> 왼쪽에 있을수록 작은 인덱스쪽에 있도록 정렬
                     // 위쪽 좌표의 왼쪽, 중간, 오른쪽 찾기
@@ -120,27 +150,59 @@ class MainActivity : Activity() {
 
 
                     // ~~ 부착이 성공적인지 확인하고 사용자에게 알리기
+                    val msgFail = "부착 실패\n"
+                    val msgSuccess = "부착 성공"
 
                     // Y값 평균
                     var meanUpY = (pointY[upIdx[0]]+pointY[upIdx[1]]+pointY[upIdx[2]])/3
                     var meanDownY = (pointY[downIdx[0]]+pointY[downIdx[1]])/2
                     // 아래 수치는 대강 잡아둠. 나중에 고쳐야 함
-                    var outerDistY: Int = 400
+                    var outerDistY: Int = 1500
 
-                    var innerDistY: Int = 25
+                    var innerDistY: Int = 100
                     var innerDistX: Int = 100
 
                     // 1. 간격이 적절한가
-                        // y좌표: 위쪽 y좌표의 평균과 아래쪽 y좌표의 평균이 "일정 수치"(outerDistY)와 비슷한지 비교
-                        // x좌표: 위쪽, 아래쪽끼리 각 점 사이 간격이 innerDistX와 비슷한지 비교
-
+                        // y좌표: 위쪽 y좌표의 평균과 아래쪽 y좌표의 평균이 "일정 수치"(outerDistY)와 비슷한지 비교 -> 1300~1650
+                    var distMeanY = meanDownY-meanUpY
                     // !!!! 1. 간격이 적절하지 못하면: 완전 잘못된 것임. 다시 실리콘 붙이고 인식 해달라고 요청 -  return true
+                    if (!(distMeanY >= 1300 && distMeanY <= 1650)){
+                        msgFail+"1-1. y좌표 간격 부적절"
+                        Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
+                        return true
+                    }
+
+                        // x좌표: 위쪽, 아래쪽끼리 각 점 사이 간격이 innerDistX와 비슷한지 비교 -> 140~420
+                    var distUpX1 = pointX[upIdx[1]]-pointX[upIdx[0]]
+                    var distUpX2 = pointX[upIdx[2]]-pointX[upIdx[1]]
+                    var distDownX = pointX[downIdx[1]]-pointX[downIdx[0]]
+
+                    var distXArr = arrayOf(distUpX1, distUpX2, distDownX)
+
+                    for (i in distXArr) {
+                        if (!(i >= 140 && i <= 420)){
+                            msgFail+"1-2. x좌표 간격 부적절"
+                            Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
+                            return true
+                        }
+                    }
 
 
 
                     // 2. 수평선이 잘 되었는가 : 위쪽 / 아래쪽 그룹 내에서 y좌표가 비슷한지 비교.
-                        // 위쪽: y 좌표의 평균과 각 점의 y값 차이가 innerDistY 이하여야 함.
+
+                    var distYArr = arrayOf(pointY[upIdx[1]]-pointY[upIdx[0]], pointY[upIdx[2]]-pointY[upIdx[1]], pointY[downIdx[1]]-pointY[downIdx[0]])
+                        // 위쪽: y 좌표의 평균과 각 점의 y값 차이가 innerDistY 이하여야 함. -> 0~140
                         // 아래쪽
+
+//                    // 차이를 알아야 하므로 절댓값으로 바꿔줌
+//                    for (i in distYArr.indices)
+//                    {
+//                        if (distYArr[i] < 0)
+//                        {
+//                            distYArr[i] = distYArr[i] * (-1)
+//                        }
+//                    }
 
                     // !!!! 2. 수평선이 잘 안 맞는다면 : 어느쪽으로 기울어졌는지 확인
                         // 위쪽: 왼쪽과 오른쪽의 y좌표 비교 -> 어느쪽이 올라가 있는지 확인
@@ -148,11 +210,46 @@ class MainActivity : Activity() {
                         // 올라가 있는 방향이 같으면 사용자에게 그 쪽으로 올려달라고 요청
                         // 다르면 다시 실리콘 붙이고 인식 해달라고 요청
                         // return true
+                    var error2 = false
+                    for (i in distYArr) {
+                        if (!(i >= -140 && i <= 140)) {
+                            error2 = true
+                            msgFail+"2. 수평 안 맞음"
+
+                            break
+                        }
+                    }
+
+                    if (error2 == true) {
+                        var leftUp = true // 왼쪽을 올리는 방향으로 보정해야 한다
+                        var rightUp = true
+                        for (i in distYArr) {
+                            // 오른쪽이 올라가있는 상태
+                            if (i>=0) {
+                                rightUp = false
+                            }
+                            // 왼쪽이 올라가있는 상태
+                            if (i<=0){
+                                leftUp = false
+                            }
+                        }
+                        if (leftUp){
+                            msgFail+"\n 왼쪽을 더 올려주세요"
+                        }
+                        if (rightUp){
+                            msgFail+"\n 오른쪽을 더 올려주세요"
+                        }
+
+                        Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
+                        return true
+                    }
+
+
 
 
 
                     // 3. 통과! 사용자에게 인식 완료했다고 안내
-
+                    Toast.makeText(this@MainActivity, msgSuccess, Toast.LENGTH_SHORT).show()
 
                 }
                 else {
