@@ -11,6 +11,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewDebug
 import android.widget.Toast
+import com.example.virtualkeypad.databinding.ActivityMainBinding
+
 var count: Int = 0
 
 // 입력받은 5개 좌표 들어갈 배열
@@ -20,10 +22,88 @@ var pointY =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 
 
 class MainActivity : Activity() {
+    private lateinit var binding:ActivityMainBinding
+    private var viewText=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val view: View = MyView(this)
+        //val view: View = MyView(this)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view=binding.root
+        viewText=binding.text.toString()
+
+        keyEvent()
         setContentView(view)
+    }
+
+    private fun keyEvent(){
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.second.setOnClickListener{
+            viewText+=binding.second.text.toString()
+            binding.text.text=viewText
+        }
+        binding.third.setOnClickListener{
+            viewText+=binding.third.text.toString()
+            binding.text.text=viewText
+        }
+        binding.fourth.setOnClickListener{
+            viewText+=binding.fourth.text.toString()
+            binding.text.text=viewText
+        }
+        binding.fifth.setOnClickListener{
+            viewText+=binding.fifth.text.toString()
+            binding.text.text=viewText
+        }
+        binding.sixth.setOnClickListener{
+            viewText+=binding.sixth.text.toString()
+            binding.text.text=viewText
+        }
+        binding.seven.setOnClickListener{
+            viewText+=binding.seven.text.toString()
+            binding.text.text=viewText
+        }
+        binding.eight.setOnClickListener{
+            viewText+=binding.eight.text.toString()
+            binding.text.text=viewText
+        }
+        binding.nine.setOnClickListener{
+            viewText+=binding.nine.text.toString()
+            binding.text.text=viewText
+        }
+        //방향키
+        /*
+        binding.left.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        }
+        binding.first.setOnClickListener{
+            viewText+=binding.first.text.toString()
+            binding.text.text=viewText
+        } */
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
