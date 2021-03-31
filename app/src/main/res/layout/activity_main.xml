@@ -1,18 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="2"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/first"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:layout_marginBottom="100dp"
+            android:text="1"/>
+
+        <TextView
+            android:id="@+id/second"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/first"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="100dp"
+            android:text="2"/>
+
+        <TextView
+            android:id="@+id/third"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/second"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="100dp"
+            android:text="3"/>
+
+        <TextView
+            android:id="@+id/fourth"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"
+            android:text="4"/>
+
+        <TextView
+            android:id="@+id/fifth"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/first"
+            app:layout_constraintTop_toBottomOf="@+id/second"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="5"/>
+
+        <TextView
+            android:id="@+id/sixth"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/second"
+            app:layout_constraintTop_toBottomOf="@+id/third"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="6"/>
+
+        <TextView
+            android:id="@+id/seven"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fourth"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"
+            android:text="7"/>
+
+        <TextView
+            android:id="@+id/eight"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/first"
+            app:layout_constraintTop_toBottomOf="@+id/fifth"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="8"/>
+
+        <TextView
+            android:id="@+id/nine"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/second"
+            app:layout_constraintTop_toBottomOf="@+id/sixth"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="9"/>
+
+        <TextView
+            android:id="@+id/left"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seven"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"
+            android:text="왼쪽"/>
+
+        <TextView
+            android:id="@+id/right"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/left"
+            app:layout_constraintTop_toBottomOf="@+id/eight"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="오른쪽"/>
+
+        <TextView
+            android:id="@+id/up"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/right"
+            app:layout_constraintTop_toBottomOf="@+id/nine"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="위"/>
+
+        <TextView
+            android:id="@+id/down"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/up"
+            app:layout_constraintTop_toBottomOf="@+id/nine"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="아래"/>
+
+        <TextView
+            android:id="@+id/cancel"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/third"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:text="c"/>
+
+        <TextView
+            android:id="@+id/home"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/sixth"
+            app:layout_constraintTop_toBottomOf="@+id/cancel"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="h"/>
+
+        <TextView
+            android:id="@+id/menu"
+            android:background="@drawable/edge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@+id/nine"
+            app:layout_constraintTop_toBottomOf="@+id/home"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="h"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
