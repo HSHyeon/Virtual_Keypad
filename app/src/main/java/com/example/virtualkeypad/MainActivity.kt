@@ -4,7 +4,9 @@ package com.example.virtualkeypad
 import android.app.Activity
 import android.content.Context
 import android.nfc.Tag
+import android.os.Build
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.Menu
 import android.view.MotionEvent
@@ -12,14 +14,15 @@ import android.view.View
 import android.view.ViewDebug
 import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
+import org.w3c.dom.Text
+import java.util.*
 
 var count: Int = 0
-
+private var mTTS: TextToSpeech? = null
 // 입력받은 5개 좌표 들어갈 배열
 // count.toFloat()로 한 이유: 0.0으로 초기화 하니까 Double로 되어 오류 나서.. 바꿔 말하자면 타입 맞추려고 한 것임.
 var pointX =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 var pointY =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
-
 
 class MainActivity : Activity() {
     private lateinit var binding:ActivityMainBinding
@@ -32,6 +35,19 @@ class MainActivity : Activity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view=binding.root
         viewText=binding.text.toString()
+        mTTS = TextToSpeech(this, TextToSpeech.OnInitListener { i ->
+            if (i == TextToSpeech.SUCCESS) {
+                val result = mTTS!!.setLanguage(Locale.US)
+                if (result == TextToSpeech.LANG_MISSING_DATA
+                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("TTS", "Language Not Supported")
+                } else {
+
+                }
+            } else {
+                Log.e("TTS", "Initialization Failed")
+            }
+        })
 
         keyEvent()
         setContentView(view)
@@ -40,7 +56,9 @@ class MainActivity : Activity() {
     private fun keyEvent(){
         binding.first.setOnClickListener{
             viewText+=binding.first.text.toString()
+            mTTS!!.speak("1", TextToSpeech.QUEUE_FLUSH, null)
             binding.text.text=viewText
+
         }
         binding.second.setOnClickListener{
             viewText+=binding.second.text.toString()
@@ -105,6 +123,8 @@ class MainActivity : Activity() {
             binding.text.text=viewText
         } */
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -330,7 +350,7 @@ class MainActivity : Activity() {
 
                     // 3. 통과! 사용자에게 인식 완료했다고 안내
                     Toast.makeText(this@MainActivity, msgSuccess, Toast.LENGTH_SHORT).show()
-
+                    mTTS!!.speak(msgSuccess, TextToSpeech.QUEUE_FLUSH, null)
                 }
                 else {
                     //TODO 특정 5개의 범위의 좌표를 연속적으로 5번 터치할 때만 count하기
