@@ -13,6 +13,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 import java.util.*
@@ -59,11 +60,11 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val view: View = MyView(this)
+        //val view: View = MyView(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view=binding.root
-        viewText=binding.text.toString()
+        viewText=binding.showText.toString()
         mTTS = TextToSpeech(this, TextToSpeech.OnInitListener { i ->
             if (i == TextToSpeech.SUCCESS) {
                 val result = mTTS!!.setLanguage(Locale.US)
