@@ -11,11 +11,37 @@ import android.util.Log
 import android.view.Menu
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewDebug
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 import java.util.*
+
+/*
+* Released under the MIT license
+* Copyright (c) 2014 KimYs(a.k.a ZeDA)
+* http://blog.naver.com/irineu2
+*
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 var count: Int = 0
 private var mTTS: TextToSpeech? = null
@@ -24,9 +50,13 @@ private var mTTS: TextToSpeech? = null
 var pointX =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 var pointY =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 
+
 class MainActivity : Activity() {
     private lateinit var binding:ActivityMainBinding
     private var viewText=""
+    private lateinit var chunjiin:Chunjiin
+    private lateinit var btn: Array<Button>
+    private lateinit var textView:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +64,7 @@ class MainActivity : Activity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view=binding.root
-        viewText=binding.text.toString()
+        viewText=binding.showText.toString()
         mTTS = TextToSpeech(this, TextToSpeech.OnInitListener { i ->
             if (i == TextToSpeech.SUCCESS) {
                 val result = mTTS!!.setLanguage(Locale.US)
@@ -49,79 +79,15 @@ class MainActivity : Activity() {
             }
         })
 
-        keyEvent()
+        //keyEvent()
+        textView=findViewById(R.id.show_text)
         setContentView(view)
+
+        //chunjiin=Chunjiin(binding.showText,this)
     }
 
-    private fun keyEvent(){
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            mTTS!!.speak("1", TextToSpeech.QUEUE_FLUSH, null)
-            binding.text.text=viewText
-
-        }
-        binding.second.setOnClickListener{
-            viewText+=binding.second.text.toString()
-            binding.text.text=viewText
-        }
-        binding.third.setOnClickListener{
-            viewText+=binding.third.text.toString()
-            binding.text.text=viewText
-        }
-        binding.fourth.setOnClickListener{
-            viewText+=binding.fourth.text.toString()
-            binding.text.text=viewText
-        }
-        binding.fifth.setOnClickListener{
-            viewText+=binding.fifth.text.toString()
-            binding.text.text=viewText
-        }
-        binding.sixth.setOnClickListener{
-            viewText+=binding.sixth.text.toString()
-            binding.text.text=viewText
-        }
-        binding.seven.setOnClickListener{
-            viewText+=binding.seven.text.toString()
-            binding.text.text=viewText
-        }
-        binding.eight.setOnClickListener{
-            viewText+=binding.eight.text.toString()
-            binding.text.text=viewText
-        }
-        binding.nine.setOnClickListener{
-            viewText+=binding.nine.text.toString()
-            binding.text.text=viewText
-        }
-        //방향키
-        /*
-        binding.left.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        }
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        }
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        }
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        }
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        }
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        }
-        binding.first.setOnClickListener{
-            viewText+=binding.first.text.toString()
-            binding.text.text=viewText
-        } */
+    private fun printString(s:String){
+        textView.append(s)
     }
 
 
@@ -135,6 +101,87 @@ class MainActivity : Activity() {
     protected inner class MyView(context: Context?) : View(context) {
         override fun onTouchEvent(event: MotionEvent): Boolean {
 
+            var curX:Float=event.x
+            var curY:Float=event.y
+            val msg = "터치를 입력받음 : $curX / $curY"
+
+            Log.d("test", msg)
+            //Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
+
+            if(curX in 44.09..107.08){
+                Log.d("test","1")
+                if(curY in 18.90..81.89){
+                    Log.d("test","2")
+                    printString("1")
+                }
+                if(curY in 107.09..170.08){
+                    printString("4")
+                }
+                if(curY in 195.28..258.27){
+                    printString("7")
+                }
+                if(curY in 283.47..346.46){
+                    printString("*")
+                }
+                if(curY in 611.03..674.02){
+                    printString("취소")
+                }
+            }
+            else if(curX in 170.07..233.06){
+                if(curY in 18.90..81.89){
+                    printString("2")
+                }
+                if(curY in 107.09..170.08){
+                    printString("5")
+                }
+                if(curY in 195.28..258.27){
+                    printString("8")
+                }
+                if(curY in 283.47..346.46){
+                    printString("0")
+                }
+                if(curY in 611.03..674.02){
+                    printString("확인")
+                }
+            }
+            else if(curX in 296.05..359.04){
+                if(curY in 18.90..81.89){
+                    printString("3")
+                }
+                if(curY in 107.09..170.08){
+                    printString("6")
+                }
+                if(curY in 195.28..258.27){
+                    printString("9")
+                }
+                if(curY in 283.47..346.46){
+                    printString("#")
+                }
+                if(curY in 611.03..674.02){
+                    printString("메뉴")
+                }
+            }
+            if(curY in 447.25..510.24){ //가운데
+                if(curX in 81.89..144.88){
+                    printString("왼쪽")
+                }
+                else if(curX in 157.48..220.47){
+                    printString("가운데")
+                }
+                else if(curX in 233.07..296.06){
+                    printString("오른쪽")
+                }
+            }
+            else if(curY in 371.66..434.65){ //제일 위
+                if(curX in 157.48..220.47){
+                    printString("위")
+                }
+            }
+            else if(curY in 522.84..585.83){ //아래
+                if(curX in 157.48..220.47){
+                    printString("아래")
+                }
+            }
            // super.onTouchEvent(event)
 
             //event
@@ -349,6 +396,7 @@ class MainActivity : Activity() {
 
 
                     // 3. 통과! 사용자에게 인식 완료했다고 안내
+
                     Toast.makeText(this@MainActivity, msgSuccess, Toast.LENGTH_SHORT).show()
                     mTTS!!.speak(msgSuccess, TextToSpeech.QUEUE_FLUSH, null)
                 }
