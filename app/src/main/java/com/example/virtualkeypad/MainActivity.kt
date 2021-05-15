@@ -3,7 +3,10 @@ package com.example.virtualkeypad
 
 import android.app.Activity
 import android.content.Context
+import android.nfc.Tag
+import android.os.Build
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.Menu
 import android.view.MotionEvent
@@ -11,6 +14,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.example.virtualkeypad.databinding.ActivityMainBinding
+import org.w3c.dom.Text
+import java.util.*
 
 /*
 * Released under the MIT license
@@ -38,7 +43,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 
 var count: Int = 0
-
+private var mTTS: TextToSpeech? = null
 // 입력받은 5개 좌표 들어갈 배열
 // count.toFloat()로 한 이유: 0.0으로 초기화 하니까 Double로 되어 오류 나서.. 바꿔 말하자면 타입 맞추려고 한 것임.
 var pointX =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
@@ -57,7 +62,21 @@ class MainActivity : Activity() {
         val view: View = MyView(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        //val view=binding.root
+        val view=binding.root
+        viewText=binding.text.toString()
+        mTTS = TextToSpeech(this, TextToSpeech.OnInitListener { i ->
+            if (i == TextToSpeech.SUCCESS) {
+                val result = mTTS!!.setLanguage(Locale.US)
+                if (result == TextToSpeech.LANG_MISSING_DATA
+                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("TTS", "Language Not Supported")
+                } else {
+
+                }
+            } else {
+                Log.e("TTS", "Initialization Failed")
+            }
+        })
 
         //keyEvent()
         textView=findViewById(R.id.show_text)
@@ -69,6 +88,8 @@ class MainActivity : Activity() {
     private fun printString(s:String){
         textView.append(s)
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -164,7 +185,7 @@ class MainActivity : Activity() {
 
             //event
             //event 종류/각각의 특성
-/*
+
             if (event.action == MotionEvent.ACTION_DOWN) {
                 if(count>5){
                     count = 0
@@ -376,10 +397,10 @@ class MainActivity : Activity() {
                     // 3. 통과! 사용자에게 인식 완료했다고 안내
 
                     Toast.makeText(this@MainActivity, msgSuccess, Toast.LENGTH_SHORT).show()
-
+                    mTTS!!.speak(msgSuccess, TextToSpeech.QUEUE_FLUSH, null)
                 }
                 else {
-                    //특정 5개의 범위의 좌표를 연속적으로 5번 터치할 때만 count하기
+                    //TODO 특정 5개의 범위의 좌표를 연속적으로 5번 터치할 때만 count하기
 
                     val x = event.x
                     val y = event.y
@@ -389,7 +410,6 @@ class MainActivity : Activity() {
                     pointX[count] = x
                     pointY[count] = y
 
-
                     Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
 //                    Toast.makeText(this@MainActivity, count.toString(), Toast.LENGTH_SHORT).show()
 
@@ -397,9 +417,7 @@ class MainActivity : Activity() {
                     return true
             }
             }
-*/
-
             return false
 
         }
-    } }
+    }}
