@@ -2,6 +2,7 @@ package com.example.virtualkeypad
 
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.Button
+import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import java.util.*
 
@@ -57,9 +59,9 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
 
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        //binding = ActivityMainBinding.inflate(layoutInflater)
 
-        viewText=binding.showText.toString()
+        //viewText=binding.showText.toString()
         mTTS = TextToSpeech(this, TextToSpeech.OnInitListener { i ->
             if (i == TextToSpeech.SUCCESS) {
                 val result = mTTS!!.setLanguage(Locale.US)
@@ -74,14 +76,15 @@ class MainActivity : Activity() {
         })
 
 
-        binding.showText.setOnTouchListener(listener)
+        //binding.showText.setOnTouchListener(listener)
         //keyEvent()
         //textView=findViewById(R.id.show_text)
-        setContentView(binding.root)
+        val view: View = MyView(this)
+        setContentView(view)
 
         //chunjiin=Chunjiin(binding.showText,this)
     }
-
+/*
     private fun printString(s: String) {
         Log.d("버튼 클릭!",s)
 
@@ -171,18 +174,9 @@ class MainActivity : Activity() {
         }
         true
     }
-
-/*
-    private val listener=View.onTouchListener(){
-        v.onTouchEvent(event)
-        Log.d("test","터치입력")
-        var curX:Float=event!!.x
-        var curY:Float=event!!.y
-        val msg = "터치를 입력받음 : $curX / $curY"
-
-        Log.d("test", msg)
-        //Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
-
+*/
+protected inner class MyView(context: Context?) : View(context) {
+    override fun onTouchEvent(event: MotionEvent): Boolean {
 
         // super.onTouchEvent(event)
 
@@ -196,7 +190,7 @@ class MainActivity : Activity() {
                 Toast.makeText(this@MainActivity, "카운트 초기화", Toast.LENGTH_SHORT).show()
             }
             else if (count == 5){
-                //입력받은 5개의 좌표가 제대로 되었는지 연산하기
+                //TODO 입력받은 5개의 좌표가 제대로 되었는지 연산하기
 
                 // 다시 터치했을 때 if문의 다른 조건 으로 들어갈 수 있게 해준다.
                 count++
@@ -398,12 +392,11 @@ class MainActivity : Activity() {
 
 
                 // 3. 통과! 사용자에게 인식 완료했다고 안내
-
                 Toast.makeText(this@MainActivity, msgSuccess, Toast.LENGTH_SHORT).show()
-                mTTS!!.speak(msgSuccess, TextToSpeech.QUEUE_FLUSH, null)
+
             }
             else {
-                //특정 5개의 범위의 좌표를 연속적으로 5번 터치할 때만 count하기
+                //TODO 특정 5개의 범위의 좌표를 연속적으로 5번 터치할 때만 count하기
 
                 val x = event.x
                 val y = event.y
@@ -421,6 +414,7 @@ class MainActivity : Activity() {
             }
         }
         return false
+
     }
-*/
+    }
 }
