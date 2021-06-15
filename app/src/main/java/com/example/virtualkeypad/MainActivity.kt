@@ -2,9 +2,11 @@ package com.example.virtualkeypad
 
 
 import android.app.Activity
+import android.content.res.Resources
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
@@ -12,6 +14,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import java.util.*
+
 
 
 /*
@@ -48,6 +51,15 @@ var pointY =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 
 
 var attachKeypad: Int = 0
+
+
+// https://medium.com/@johanneslagos/dp-to-px-and-viceversa-for-kotlin-d797815d852b
+// dp를 픽셀로 만들기
+// 사용 방법: 10.dp
+val Int.px: Float
+    get() = (this * Resources.getSystem().displayMetrics.density).toFloat()
+
+
 
 class MainActivity : Activity() {
     private lateinit var binding: ActivityMainBinding
@@ -105,75 +117,75 @@ class MainActivity : Activity() {
 
             Log.d("test", msg)
 
-            if(curX in 44.09..107.08){
-                if(curY in 18.90..81.89){
+            if(curX in 44.px..107.px){
+                if(curY in 19.px..82.px){
                     printString("1")
                 }
-                if(curY in 107.09..170.08){
+                if(curY in 107.px..170.px){
                     printString("4")
                 }
-                if(curY in 195.28..258.27){
+                if(curY in 195.px..258.px){
                     printString("7")
                 }
-                if(curY in 283.47..346.46){
+                if(curY in 283.px..346.px){
                     printString("*")
                 }
-                if(curY in 611.03..674.02){
+                if(curY in 611.px..674.px){
                     printString("취소")
                 }
             }
-            else if(curX in 170.07..233.06){
-                if(curY in 18.90..81.89){
+            else if(curX in 170.px..233.px){
+                if(curY in 19.px..82.px){
                     printString("2")
                 }
-                if(curY in 107.09..170.08){
+                if(curY in 107.px..170.px){
                     printString("5")
                 }
-                if(curY in 195.28..258.27){
+                if(curY in 195.px..258.px){
                     printString("8")
                 }
-                if(curY in 283.47..346.46){
+                if(curY in 283.px..346.px){
                     printString("0")
                 }
-                if(curY in 611.03..674.02){
+                if(curY in 611.px..674.px){
                     printString("확인")
                 }
             }
-            else if(curX in 296.05..359.04){
-                if(curY in 18.90..81.89){
+            else if(curX in 296.px..359.px){
+                if(curY in 19.px..82.px){
                     printString("3")
                 }
-                if(curY in 107.09..170.08){
+                if(curY in 107.px..170.px){
                     printString("6")
                 }
-                if(curY in 195.28..258.27){
+                if(curY in 195.px..258.px){
                     printString("9")
                 }
-                if(curY in 283.47..346.46){
+                if(curY in 283.px..346.px){
                     printString("#")
                 }
-                if(curY in 611.03..674.02){
+                if(curY in 611.px..674.px){
                     printString("메뉴")
                 }
             }
-            if(curY in 447.25..510.24){ //가운데
-                if(curX in 81.89..144.88){
+            if(curY in 447.px..510.px){ //가운데
+                if(curX in 82.px..145.px){
                     printString("왼쪽")
                 }
-                else if(curX in 157.48..220.47){
+                else if(curX in 157.px..220.px){
                     printString("가운데")
                 }
-                else if(curX in 233.07..296.06){
+                else if(curX in 233.px..296.px){
                     printString("오른쪽")
                 }
             }
-            else if(curY in 371.66..434.65){ //제일 위
-                if(curX in 157.48..220.47){
+            else if(curY in 372.px..435.px){ //제일 위
+                if(curX in 157.px..220.px){
                     printString("위")
                 }
             }
-            else if(curY in 522.84..585.83){ //아래
-                if(curX in 157.48..220.47){
+            else if(curY in 523.px..586.px){ //아래
+                if(curX in 157.px..220.px){
                     printString("아래")
                 }
             }
@@ -313,24 +325,29 @@ class MainActivity : Activity() {
                     // Y값 평균
                     var meanUpY = (pointY[upIdx[0]]+pointY[upIdx[1]]+pointY[upIdx[2]])/3
                     var meanDownY = (pointY[downIdx[0]]+pointY[downIdx[1]])/2
-                    // 아래 수치는 대강 잡아둠. 나중에 고쳐야 함
-                    var outerDistY: Int = 1500
+                    // 다음 파일에 따라 mm 정해둠
+                    //가상 키패드 스마트폰 화면에 띄울 버튼 치수 2021-04-25 19:34
+                    // 도안에서 제일 위의 버튼 3개를 모두 누르고, 제일 아래 버튼 3개중 2개만 누르면 되는 시나리오
+                    // 92mm : 592.13dp
+                    var outerDistY: Int = 592
 
-                    var innerDistY: Int = 100
-                    var innerDistX: Int = 100
+                    // 10mm : 62.99dp
+                    var innerDistY: Int = 63
+                    var innerDistX: Int = 63
 
                     // 1. 간격이 적절한가
-                    // y좌표: 위쪽 y좌표의 평균과 아래쪽 y좌표의 평균이 "일정 수치"(outerDistY)와 비슷한지 비교 -> 1300~1650
+                    // y좌표: 위쪽 y좌표의 평균과 아래쪽 y좌표의 평균이 "일정 수치"(outerDistY)와 비슷한지 비교 -> 84mm~104mm
                     var distMeanY = meanDownY-meanUpY
                     // !!!! 1. 간격이 적절하지 못하면: 완전 잘못된 것임. 다시 실리콘 붙이고 인식 해달라고 요청 -  return true
-                    if (!(distMeanY >= 1300 && distMeanY <= 1650)){
+                    if (!(distMeanY >= 528.px && distMeanY <= 656.px)){
                         msgFail += "1-1. y좌표 간격 부적절"
+                        Log.d("1-1","${528.px}(528dp)과 ${656.px}(656dp)사이에 있어야 함")
                         attachSuccess = 0
                         Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
                         true
                     }
 
-                    // x좌표: 위쪽, 아래쪽끼리 각 점 사이 간격이 innerDistX와 비슷한지 비교 -> 140~420
+                    // x좌표: 위쪽, 아래쪽끼리 각 점 사이 간격이 innerDistX와 비슷한지 비교 -> 5mm~15mm
                     var distUpX1 = pointX[upIdx[1]]-pointX[upIdx[0]]
                     var distUpX2 = pointX[upIdx[2]]-pointX[upIdx[1]]
                     var distDownX = pointX[downIdx[1]]-pointX[downIdx[0]]
@@ -338,12 +355,15 @@ class MainActivity : Activity() {
                     var distXArr = arrayOf(distUpX1, distUpX2, distDownX)
 
                     for (i in distXArr) {
-                        if (!(i >= 140 && i <= 420)){
+
+                        if (!(i >= 62.px && i <= 189.px)){
+
                             msgFail+="1-2. x좌표 간격 부적절"
+                            Log.d("1-2","${62.px}(62dp)과 ${189.px}(189dp)사이에 있어야 함")
                             attachSuccess = 0
                             Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
                             break
-                            
+
                         }
                     }
 
@@ -372,8 +392,11 @@ class MainActivity : Activity() {
                     // return true
                     var error2 = false
                     for (i in distYArr) {
-                        if (!(i >= -140 && i <= 140)) {
+                        // 간격이 10mm(63dp) 이내여야한다. 여유로 2mm씩 더 줬다.
+                        if (!(i >= -75.px && i <= 75.px)) {
                             error2 = true
+                            Log.d("2. ","${-75.px}(-75dp)과 ${75.px}(75dp)사이에 있어야 함")
+
                             msgFail+="2. 수평 안 맞음"
                             attachSuccess = 0
 
