@@ -1,14 +1,11 @@
 package com.example.virtualkeypad
-import android.R
 import android.content.Context
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 
 
 /*
@@ -38,7 +35,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-class Chunjiin(private val et: EditText, view:Context) {
+class Chunjiin(private val et: EditText, view: Array<Button?>) {
     private lateinit var btn: Array<Button>
     private var now_mode = HANGUL
 
@@ -74,7 +71,7 @@ class Chunjiin(private val et: EditText, view:Context) {
     private var flag_upper = true
 
 
-    private fun setButton(view:Context?){
+    private fun setButton(view: Array<Button?>){
 
     }
 

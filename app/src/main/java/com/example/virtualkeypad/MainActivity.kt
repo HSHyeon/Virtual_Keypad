@@ -15,6 +15,8 @@ import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import java.util.*
 
+//import com.example.virtualkeypad.Chungiin
+
 
 
 /*
@@ -50,7 +52,8 @@ var pointX =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 var pointY =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 
 
-var attachKeypad: Int = 0
+// 0으로 해야 함. 9: 디버깅용
+var attachKeypad: Int = 9
 
 
 // https://medium.com/@johanneslagos/dp-to-px-and-viceversa-for-kotlin-d797815d852b
@@ -94,7 +97,9 @@ class MainActivity : Activity() {
         //textView=findViewById(R.id.show_text)
         setContentView(binding.root)
 
-        //chunjiin=Chunjiin(binding.showText,this)
+//        chunjiin=Chunjiin(binding.showText,this)
+
+//        Chunjiinactivity()
     }
 
     private fun printString(s: String) {
@@ -116,6 +121,7 @@ class MainActivity : Activity() {
             val msg = "터치를 입력받음 : $curX / $curY"
 
             Log.d("test", msg)
+
 
             if(curX in 44.px..107.px){
                 if(curY in 19.px..82.px){
