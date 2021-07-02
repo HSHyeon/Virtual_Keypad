@@ -2,18 +2,18 @@ package com.example.virtualkeypad
 
 
 import android.app.Activity
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.util.TypedValue
 import android.view.MotionEvent
-import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.Button
 import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import java.util.*
+
 
 //import com.example.virtualkeypad.Chungiin
 
@@ -99,11 +99,14 @@ class MainActivity : Activity() {
 
 //        chunjiin=Chunjiin(binding.showText,this)
 
-//        Chunjiinactivity()
+        // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
+//        val intent = Intent(this, Chunjiinactivity_kt::class.java)
+        val intent = Intent(this, Chunjiinactivity::class.java)
+        startActivity(intent)
     }
 
     private fun printString(s: String) {
-        Log.d("버튼 클릭!",s)
+        Log.d("버튼 클릭!", s)
 
         binding.showText.append(s)
     }
@@ -200,7 +203,7 @@ class MainActivity : Activity() {
         else // 키패드 부착이 안 된 상태라면
         {
             v.onTouchEvent(event)
-            Log.d("test","터치입력")
+            Log.d("test", "터치입력")
             var curX:Float=event!!.x
             var curY:Float=event!!.y
             val msg = "터치를 입력받음 : $curX / $curY"
@@ -347,7 +350,7 @@ class MainActivity : Activity() {
                     // !!!! 1. 간격이 적절하지 못하면: 완전 잘못된 것임. 다시 실리콘 붙이고 인식 해달라고 요청 -  return true
                     if (!(distMeanY >= 528.px && distMeanY <= 656.px)){
                         msgFail += "1-1. y좌표 간격 부적절"
-                        Log.d("1-1","${528.px}(528dp)과 ${656.px}(656dp)사이에 있어야 함")
+                        Log.d("1-1", "${528.px}(528dp)과 ${656.px}(656dp)사이에 있어야 함")
                         attachSuccess = 0
                         Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
                         true
@@ -365,7 +368,7 @@ class MainActivity : Activity() {
                         if (!(i >= 62.px && i <= 189.px)){
 
                             msgFail+="1-2. x좌표 간격 부적절"
-                            Log.d("1-2","${62.px}(62dp)과 ${189.px}(189dp)사이에 있어야 함")
+                            Log.d("1-2", "${62.px}(62dp)과 ${189.px}(189dp)사이에 있어야 함")
                             attachSuccess = 0
                             Toast.makeText(this@MainActivity, msgFail, Toast.LENGTH_SHORT).show()
                             break
@@ -377,7 +380,11 @@ class MainActivity : Activity() {
 
                     // 2. 수평선이 잘 되었는가 : 위쪽 / 아래쪽 그룹 내에서 y좌표가 비슷한지 비교.
 
-                    var distYArr = arrayOf(pointY[upIdx[1]]-pointY[upIdx[0]], pointY[upIdx[2]]-pointY[upIdx[1]], pointY[downIdx[1]]-pointY[downIdx[0]])
+                    var distYArr = arrayOf(
+                        pointY[upIdx[1]] - pointY[upIdx[0]],
+                        pointY[upIdx[2]] - pointY[upIdx[1]],
+                        pointY[downIdx[1]] - pointY[downIdx[0]]
+                    )
                     // 위쪽: y 좌표의 평균과 각 점의 y값 차이가 innerDistY 이하여야 함. -> 0~140
                     // 아래쪽
 
@@ -401,7 +408,7 @@ class MainActivity : Activity() {
                         // 간격이 10mm(63dp) 이내여야한다. 여유로 2mm씩 더 줬다.
                         if (!(i >= -75.px && i <= 75.px)) {
                             error2 = true
-                            Log.d("2. ","${-75.px}(-75dp)과 ${75.px}(75dp)사이에 있어야 함")
+                            Log.d("2. ", "${-75.px}(-75dp)과 ${75.px}(75dp)사이에 있어야 함")
 
                             msgFail+="2. 수평 안 맞음"
                             attachSuccess = 0
