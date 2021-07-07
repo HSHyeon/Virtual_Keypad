@@ -53,7 +53,7 @@ var pointY =  Array<Float>(5){count.toFloat()} //사이즈는 5이고 값은 0
 
 
 // 0으로 해야 함. 9: 디버깅용
-var attachKeypad: Int = 9
+var attachKeypad: Int = 0
 
 
 // https://medium.com/@johanneslagos/dp-to-px-and-viceversa-for-kotlin-d797815d852b
@@ -99,10 +99,10 @@ class MainActivity : Activity() {
 
 //        chunjiin=Chunjiin(binding.showText,this)
 
-        // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
-//        val intent = Intent(this, Chunjiinactivity_kt::class.java)
-        val intent = Intent(this, Chunjiinactivity::class.java)
-        startActivity(intent)
+//        // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
+////        val intent = Intent(this, Chunjiinactivity_kt::class.java)
+//        val intent = Intent(this, Chunjiinactivity::class.java)
+//        startActivity(intent)
     }
 
     private fun printString(s: String) {
@@ -117,6 +117,12 @@ class MainActivity : Activity() {
 //        키패드 부착이 된 상태라면
         if (attachKeypad == 1)
         {
+            // 다른 사람이 만든 천지인 사용하려면 여기 주석 해제
+//            // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
+////        val intent = Intent(this, Chunjiinactivity_kt::class.java)
+//            val intent = Intent(this, Chunjiinactivity::class.java)
+//            startActivity(intent)
+
             val action = event.action
             val curX = event.x //눌린 곳의 X좌표
             val curY = event.y //눌린 곳의 Y좌표
