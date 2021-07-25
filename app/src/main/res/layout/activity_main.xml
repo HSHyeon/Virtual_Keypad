@@ -18,9 +18,11 @@
         android:text="" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/show_text"
+        app:layout_constraintTop_toTopOf="@+id/show_text"
         tools:ignore="MissingConstraints">
 
         <!--        <TextView-->
@@ -33,10 +35,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
+            android:layout_marginLeft="60.09dp"
             android:layout_marginTop="18.90dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/button1"
@@ -45,8 +46,7 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="1"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/button2"
@@ -72,10 +72,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/button4"
@@ -84,8 +83,7 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="4"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/button5"
@@ -111,10 +109,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/button7"
@@ -123,8 +120,7 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="7"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/button8"
@@ -150,10 +146,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/button_star"
@@ -162,8 +157,7 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="*"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/button0"
@@ -186,12 +180,49 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60.09dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/chunjiin_buttonex1"
+            android:layout_width="62.99dp"
+            android:layout_height="62.99dp"
+            android:background="#BBBBBB"
+            android:gravity="center"
+            android:text="띄어쓰기"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/chunjiin_buttonex3"
+            android:layout_width="62.99dp"
+            android:layout_height="62.99dp"
+            android:layout_marginLeft="62.99dp"
+            android:background="#BBBBBB"
+            android:gravity="center"
+            android:text="바꾸기"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/chunjiin_buttonex2"
+            android:layout_width="62.99dp"
+            android:layout_height="62.99dp"
+            android:layout_marginLeft="62.99dp"
+            android:background="#BBBBBB"
+            android:gravity="center"
+            android:text="지우기"
+            android:textSize="12sp" />
+    </LinearLayout>
+
         <TextView
             android:id="@+id/button_up"
             android:layout_width="62.99dp"
             android:layout_height="62.99dp"
-            android:layout_marginTop="25.20dp"
-            android:layout_marginLeft="157.48dp"
+            android:layout_marginLeft="173.48dp"
+            android:layout_marginTop="10dp"
             android:background="#BBBBBB"
             android:gravity="center"
             android:text="up"
@@ -200,10 +231,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="81.89dp"
+            android:layout_marginLeft="97.89dp"
             android:layout_marginTop="12.60dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/button_left"
@@ -212,8 +242,7 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="left"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/button_ok"
@@ -240,8 +269,8 @@
             android:id="@+id/button_down"
             android:layout_width="62.99dp"
             android:layout_height="62.99dp"
+            android:layout_marginLeft="173.48dp"
             android:layout_marginTop="12.60dp"
-            android:layout_marginLeft="157.48dp"
             android:background="#BBBBBB"
             android:gravity="center"
             android:text="down"
@@ -251,10 +280,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/button_cancel"
@@ -263,8 +291,7 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="c"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/button_home"
