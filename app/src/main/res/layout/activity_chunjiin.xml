@@ -6,22 +6,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <TextView
+    <!--        android:id="@+id/show_text"-->
+    <EditText
+        android:id="@+id/chunjiin_text"
         android:textIsSelectable="true"
+        android:gravity="top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/show_text"
+
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="" />
 
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+
+        app:layout_constraintBottom_toBottomOf="@+id/chunjiin_text"
+        app:layout_constraintTop_toTopOf="@+id/chunjiin_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp">
 
         <!--        <TextView-->
         <!--            android:id="@+id/show_text"-->
@@ -33,23 +41,21 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
+            android:layout_marginLeft="60.09dp"
             android:layout_marginTop="18.90dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/button1"
+            <Button
+                android:id="@+id/chunjiin_button1"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="1"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button2"
+            <Button
+                android:id="@+id/chunjiin_button2"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -58,8 +64,8 @@
                 android:text="2"
                 android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button3"
+            <Button
+                android:id="@+id/chunjiin_button3"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -72,23 +78,21 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/button4"
+            <Button
+                android:id="@+id/chunjiin_button4"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="4"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button5"
+            <Button
+                android:id="@+id/chunjiin_button5"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -97,8 +101,8 @@
                 android:text="5"
                 android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button6"
+            <Button
+                android:id="@+id/chunjiin_button6"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -111,23 +115,21 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/button7"
+            <Button
+                android:id="@+id/chunjiin_button7"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="7"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button8"
+            <Button
+                android:id="@+id/chunjiin_button8"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -136,8 +138,8 @@
                 android:text="8"
                 android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button9"
+            <Button
+                android:id="@+id/chunjiin_button9"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -150,23 +152,21 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-            <TextView
+            <Button
                 android:id="@+id/button_star"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="*"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/button0"
+            <Button
+                android:id="@+id/chunjiin_button0"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -175,7 +175,7 @@
                 android:text="0"
                 android:textSize="30sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/button_shap"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
@@ -186,36 +186,72 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chunjiin_buttonex1"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="띄어쓰기"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/chunjiin_buttonex3"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="바꾸기"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/chunjiin_buttonex2"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="지우기"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <Button
             android:id="@+id/button_up"
             android:layout_width="62.99dp"
             android:layout_height="62.99dp"
-            android:layout_marginTop="25.20dp"
-            android:layout_marginLeft="157.48dp"
+            android:layout_marginLeft="173.48dp"
+            android:layout_marginTop="10dp"
             android:background="#BBBBBB"
             android:gravity="center"
             android:text="up"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="81.89dp"
+            android:layout_marginLeft="97.89dp"
             android:layout_marginTop="12.60dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/button_left"
+            <Button
+                android:id="@+id/chunjiin_button_left"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="left"
-                android:textSize="30sp"
-                />
+                android:textSize="20sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/button_ok"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
@@ -223,9 +259,9 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="ok"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/button_right"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
@@ -233,40 +269,38 @@
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="right"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
-        <TextView
+        <Button
             android:id="@+id/button_down"
             android:layout_width="62.99dp"
             android:layout_height="62.99dp"
+            android:layout_marginLeft="173.48dp"
             android:layout_marginTop="12.60dp"
-            android:layout_marginLeft="157.48dp"
             android:background="#BBBBBB"
             android:gravity="center"
             android:text="down"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44.09dp"
-            android:layout_marginTop="25.20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-            <TextView
+            <Button
                 android:id="@+id/button_cancel"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
                 android:text="c"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/button_home"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
@@ -276,7 +310,7 @@
                 android:text="h"
                 android:textSize="30sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/button_menu"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"

@@ -7,9 +7,14 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.KeyEvent
+import android.view.KeyEvent.*
 import android.view.MotionEvent
+import android.view.View
 import android.view.View.OnTouchListener
+import android.view.inputmethod.BaseInputConnection
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.example.virtualkeypad.databinding.ActivityMainBinding
 import java.util.*
@@ -94,7 +99,7 @@ class MainActivity : Activity() {
 
         binding.showText.setOnTouchListener(listener)
         //keyEvent()
-        //textView=findViewById(R.id.show_text)
+//        textView=findViewById(R.id.show_text)
         setContentView(binding.root)
 
 //        chunjiin=Chunjiin(binding.showText,this)
@@ -118,10 +123,9 @@ class MainActivity : Activity() {
         if (attachKeypad == 1)
         {
             // 다른 사람이 만든 천지인 사용하려면 여기 주석 해제
-//            // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
-////        val intent = Intent(this, Chunjiinactivity_kt::class.java)
-//            val intent = Intent(this, Chunjiinactivity::class.java)
-//            startActivity(intent)
+            // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
+            val intent = Intent(this, Chunjiinactivity::class.java)
+            startActivity(intent)
 
             val action = event.action
             val curX = event.x //눌린 곳의 X좌표
@@ -130,6 +134,8 @@ class MainActivity : Activity() {
             val msg = "터치를 입력받음 : $curX / $curY"
 
             Log.d("test", msg)
+
+
 
 
             if(curX in 44.px..107.px){
@@ -186,6 +192,9 @@ class MainActivity : Activity() {
             if(curY in 447.px..510.px){ //가운데
                 if(curX in 82.px..145.px){
                     printString("왼쪽")
+//                    var textview=findViewById<View>(R.id.show_text) as TextView
+//                    val inputConnection = BaseInputConnection(textview, true)
+//                    inputConnection.sendKeyEvent(KeyEvent(ACTION_DOWN, KEYCODE_MENU))
                 }
                 else if(curX in 157.px..220.px){
                     printString("가운데")

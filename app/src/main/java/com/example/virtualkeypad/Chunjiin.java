@@ -27,14 +27,20 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 package com.example.virtualkeypad;
 
+import android.app.Instrumentation;
 import android.content.Context;
+import android.os.IBinder;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Chunjiin
 {
@@ -89,7 +95,7 @@ public class Chunjiin
     private void setButton(Button inputbtn[])
     {
         btn = inputbtn;
-        for(int i=0;i<12;i++)
+        for(int i=0;i<14;i++)
             btn[i].setOnClickListener(btnlistner);
         btn[12].setOnClickListener(btnchglistner);
         setBtnText(now_mode);
@@ -127,13 +133,45 @@ public class Chunjiin
                 case R.id.chunjiin_button9:	input = 9;	break;
                 case R.id.chunjiin_buttonex1:	input = 10;	break;
                 case R.id.chunjiin_buttonex2:	input = 11;	break;
+                case R.id.chunjiin_button_left:	input = 12;	break;
             }
             if(input == -1)
                 return;
-            if(now_mode == HANGUL)
+            if(now_mode == HANGUL) {
+//                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
                 hangulMake(input);
+            }
+            else if (input == 12){
+                // 좌클릭
+
+//                et.setText("hello, left");
+                Toast.makeText(et.getContext(), "left", Toast.LENGTH_SHORT).show();
+
+//                오류남
+//                Instrumentation inst = new Instrumentation();
+//                inst.sendKeyDownUpSync(KeyEvent.KEYCODE_POUND);
+//                et.setText("#");
+
+//                되긴 하는데 뭔가 이상
+                // 이전 입력한 값도 같이 나옴
+                // NAVIGATION이 안 됨
+               BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_POUND));
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
+//                Log.d("LEFT", "KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT : "+(KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, 105));
+
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MOVE_HOME));
+
+//                IBinder binder = ServiceManager.getService("window");
+//                IWindowManager manager = IWindowManager.Stub.asInterface(binder);
+//                manager.injectKeyEvent(new KeyEvent(KeyEvent.yourAction, KeyEvent.yourKeyCode),true);
+
+
+            }
             else if((now_mode == ENGLISH || now_mode == UPPER_ENGLISH))
                 engMake(input);
+
             else // if(now_mode == NUMBER)
                 numMake(input);
 
