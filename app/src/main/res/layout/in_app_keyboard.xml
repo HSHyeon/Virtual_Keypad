@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <!--        android:id="@+id/show_text"-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toBottomOf="@+id/chunjiin_text"
+        app:layout_constraintTop_toTopOf="@+id/chunjiin_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp">
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/show_text"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:text=""-->
+        <!--            android:textIsSelectable="true" />-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="18.90dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chunjiin_button1"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button2"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="2"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button3"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="3"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chunjiin_button4"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button5"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="5"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button6"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="6"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chunjiin_button7"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="7"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button8"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="8"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button9"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="9"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_star"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="*"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/chunjiin_button0"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/button_shap"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="#"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chunjiin_buttonex1"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="띄어쓰기"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/chunjiin_buttonex3"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="바꾸기"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/chunjiin_buttonex2"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="지우기"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/button_up"
+            android:layout_width="62.99dp"
+            android:layout_height="62.99dp"
+            android:layout_marginLeft="173.48dp"
+            android:layout_marginTop="10dp"
+            android:background="#BBBBBB"
+            android:gravity="center"
+            android:text="up"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="97.89dp"
+            android:layout_marginTop="12.60dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chunjiin_button_left"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="left"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_ok"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="12.60dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="ok"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_right"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="12.60dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="right"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_down"
+            android:layout_width="62.99dp"
+            android:layout_height="62.99dp"
+            android:layout_marginLeft="173.48dp"
+            android:layout_marginTop="12.60dp"
+            android:background="#BBBBBB"
+            android:gravity="center"
+            android:text="down"
+            android:textSize="20sp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60.09dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="c"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/button_home"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="h"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/button_menu"
+                android:layout_width="62.99dp"
+                android:layout_height="62.99dp"
+                android:layout_marginLeft="62.99dp"
+                android:background="#BBBBBB"
+                android:gravity="center"
+                android:text="m"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
