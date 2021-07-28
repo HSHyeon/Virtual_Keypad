@@ -3,21 +3,51 @@
     package="com.example.virtualkeypad">
 
     <application
+
+
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <!-- Declares the input method service -->
+        <service android:name=".IME.MyIMEservice"
+            android:label="my_Tangible_Keyboard"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im"
+                android:resource="@xml/ime_info" />
+        </service>
+
+
         <activity android:name=".MainActivity">
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".Chunjiinactivity" />
+
+        <activity android:name=".TestMainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Chunjiinactivity_kt" />
-        <activity android:name=".Chunjiinactivity" />
     </application>
+
+
+
 
 </manifest>

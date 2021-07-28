@@ -83,6 +83,8 @@ class MainActivity : Activity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         viewText=binding.showText.toString()
+
+
         mTTS = TextToSpeech(this, TextToSpeech.OnInitListener { i ->
             if (i == TextToSpeech.SUCCESS) {
                 val result = mTTS!!.setLanguage(Locale.US)
