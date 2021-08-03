@@ -197,7 +197,7 @@
                 android:layout_marginLeft="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
-                android:text="바꾸기"
+                android:text="자판전환"
                 android:textSize="12sp" />
 
             <Button

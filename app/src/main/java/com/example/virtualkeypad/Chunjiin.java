@@ -98,7 +98,7 @@ public class Chunjiin
         for(int i=0;i<14;i++)
             btn[i].setOnClickListener(btnlistner);
         btn[12].setOnClickListener(btnchglistner);
-        setBtnText(now_mode);
+        //setBtnText(now_mode);
     }
 
     private final OnTouchListener otl = new OnTouchListener() {
