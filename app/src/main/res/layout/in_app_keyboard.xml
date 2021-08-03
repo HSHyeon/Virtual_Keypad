@@ -7,15 +7,28 @@
     tools:context=".MainActivity">
 
     <!--        android:id="@+id/show_text"-->
+    <EditText
+        android:id="@+id/chunjiin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:text=""
+        android:textIsSelectable="true"
 
+
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
 
-        app:layout_constraintBottom_toBottomOf="@+id/chunjiin_text"
-        app:layout_constraintTop_toTopOf="@+id/chunjiin_text"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp">
 
