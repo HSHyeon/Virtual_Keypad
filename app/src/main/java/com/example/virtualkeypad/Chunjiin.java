@@ -182,7 +182,7 @@ public class Chunjiin
         @Override
         public void onClick(View v) {
             now_mode = (now_mode == NUMBER) ? HANGUL : now_mode+1 ;
-            setBtnText(now_mode);
+            //setBtnText(now_mode);
             hangul.init();
             init_engnum();
         }
