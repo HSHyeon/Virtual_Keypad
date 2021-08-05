@@ -45,7 +45,7 @@ public class Chunjiinactivity extends Activity
 
 //        et = (EditText)findViewById(R.id.chunjiin_text);
         et = (EditText)findViewById(R.id.chunjiin_text);
-        btn = new Button[14];
+        btn = new Button[21];
         btn[0] = (Button)findViewById(R.id.chunjiin_button0);
         btn[1] = (Button)findViewById(R.id.chunjiin_button1);
         btn[2] = (Button)findViewById(R.id.chunjiin_button2);
@@ -60,8 +60,18 @@ public class Chunjiinactivity extends Activity
         btn[11] = (Button)findViewById(R.id.chunjiin_buttonex2);
         btn[12] = (Button)findViewById(R.id.chunjiin_buttonex3);
 
+        // 방향키
         btn[13] = (Button)findViewById(R.id.chunjiin_button_left);
+        btn[14] = (Button)findViewById(R.id.chunjiin_button_right);
+        btn[15] = (Button)findViewById(R.id.chunjiin_button_up);
+        btn[16] = (Button)findViewById(R.id.chunjiin_button_down);
+        btn[17] = (Button)findViewById(R.id.chunjiin_button_ok);
 
-        chunjiin = new Chunjiin(et, btn);
+        // 취소, 홈, 최근앱버튼
+        btn[18] = (Button)findViewById(R.id.chunjiin_button_cancel);
+        btn[19] = (Button)findViewById(R.id.chunjiin_button_home);
+        btn[20] = (Button)findViewById(R.id.chunjiin_button_menu);
+
+//        chunjiin = new Chunjiin(et, btn);
     }
 }
