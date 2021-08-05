@@ -10,7 +10,7 @@ import com.example.virtualkeypad.R
 
 class MyIMEservice: InputMethodService() {
 
-    public var chunjiin: Chunjiin_kt? = null
+    public var chunjiin: Chunjiin? = null
     public lateinit var btn: Array<Button?>
     public var et: EditText? = null
 
@@ -37,7 +37,7 @@ class MyIMEservice: InputMethodService() {
 
         btn[13] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_left) as Button
 
-        chunjiin = Chunjiin_kt(et!!, btn)
+        chunjiin = Chunjiin(et!!, btn)
 
 
         return myKeyboardView

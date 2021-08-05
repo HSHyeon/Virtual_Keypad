@@ -95,8 +95,10 @@ public class Chunjiin
     private void setButton(Button inputbtn[])
     {
         btn = inputbtn;
-        for(int i=0;i<14;i++)
+        for(int i=0;i<btn.length;i++)
             btn[i].setOnClickListener(btnlistner);
+
+
         btn[12].setOnClickListener(btnchglistner);
         //setBtnText(now_mode);
     }
@@ -133,16 +135,23 @@ public class Chunjiin
                 case R.id.chunjiin_button9:	input = 9;	break;
                 case R.id.chunjiin_buttonex1:	input = 10;	break;
                 case R.id.chunjiin_buttonex2:	input = 11;	break;
+
                 case R.id.chunjiin_button_left:	input = 12;	break;
+                case R.id.chunjiin_button_right:	input = 13;	break;
+                case R.id.chunjiin_button_up:	input = 14;	break;
+                case R.id.chunjiin_button_down:	input = 15;	break;
+                case R.id.chunjiin_button_ok:	input = 16;	break;
+
+                case R.id.chunjiin_button_cancel:	input = 17;	break;
+                case R.id.chunjiin_button_home:	input = 18;	break;
+                case R.id.chunjiin_button_menu:	input = 19;	break;
             }
             if(input == -1)
                 return;
-            if(now_mode == HANGUL) {
-//                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
-                hangulMake(input);
-            }
-            else if (input == 12){
-                // 좌클릭
+
+
+            // 좌클릭
+            if (input == 12){
 
 //                et.setText("hello, left");
                 Toast.makeText(et.getContext(), "left", Toast.LENGTH_SHORT).show();
@@ -155,20 +164,75 @@ public class Chunjiin
 //                되긴 하는데 뭔가 이상
                 // 이전 입력한 값도 같이 나옴
                 // NAVIGATION이 안 됨
-               BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_POUND));
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                // #이 출력됨
+//                  inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_POUND));
 //                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
 //                Log.d("LEFT", "KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT : "+(KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
 //                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, 105));
 
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MOVE_HOME));
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SOFT_LEFT));
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.META_META_LEFT_ON));
+                // 왼쪽 움직임
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
+
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MOVE_HOME));
 
 //                IBinder binder = ServiceManager.getService("window");
 //                IWindowManager manager = IWindowManager.Stub.asInterface(binder);
 //                manager.injectKeyEvent(new KeyEvent(KeyEvent.yourAction, KeyEvent.yourKeyCode),true);
 
-
             }
+            // 우클릭
+            else if (input == 13){
+                Toast.makeText(et.getContext(), "right", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+            }
+            // 위
+            else if (input == 14){
+                Toast.makeText(et.getContext(), "up", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
+            }
+            // 아래
+            else if (input == 15){
+                Toast.makeText(et.getContext(), "down", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
+            }
+            // ok
+            else if (input == 16){
+                Toast.makeText(et.getContext(), "ok(center)", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_CENTER));
+            }
+
+            // 취소
+            else if (input == 17){
+                Toast.makeText(et.getContext(), "cancel(back)", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+            }
+            // 홈
+            else if (input == 18){
+                Toast.makeText(et.getContext(), "home", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
+            }
+            // 메뉴(최근 앱 )
+            else if (input == 19){
+                Toast.makeText(et.getContext(), "menu", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
+            }
+
+            else if(now_mode == HANGUL) {
+//                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
+                hangulMake(input);
+            }
+
             else if((now_mode == ENGLISH || now_mode == UPPER_ENGLISH))
                 engMake(input);
 

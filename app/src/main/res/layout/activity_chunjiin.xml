@@ -225,7 +225,7 @@
 
 
         <Button
-            android:id="@+id/button_up"
+            android:id="@+id/chunjiin_button_up"
             android:layout_width="62.99dp"
             android:layout_height="62.99dp"
             android:layout_marginLeft="173.48dp"
@@ -252,7 +252,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button_ok"
+                android:id="@+id/chunjiin_button_ok"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="12.60dp"
@@ -262,7 +262,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button_right"
+                android:id="@+id/chunjiin_button_right"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="12.60dp"
@@ -273,7 +273,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button_down"
+            android:id="@+id/chunjiin_button_down"
             android:layout_width="62.99dp"
             android:layout_height="62.99dp"
             android:layout_marginLeft="173.48dp"
@@ -292,7 +292,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_cancel"
+                android:id="@+id/chunjiin_button_cancel"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
@@ -301,7 +301,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button_home"
+                android:id="@+id/chunjiin_button_home"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
@@ -311,7 +311,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button_menu"
+                android:id="@+id/chunjiin_button_menu"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
