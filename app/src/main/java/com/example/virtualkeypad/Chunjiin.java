@@ -37,6 +37,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.BaseInputConnection;
+import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,8 @@ public class Chunjiin
     private Button btn[];
     private EditText et;
     private int now_mode = HANGUL;
+
+
 
     private class Hangul
     {
@@ -86,11 +89,14 @@ public class Chunjiin
     private boolean flag_engdelete = false;
     private boolean flag_upper = true;
 
-    public Chunjiin(EditText editText, Button bt[])
+    private InputConnection ic;
+
+    public Chunjiin(EditText editText, Button bt[], InputConnection ic)
     {
         et = editText;
         et.setOnTouchListener(otl);
         setButton(bt);
+        this.ic = ic;
     }
     private void setButton(Button inputbtn[])
     {
@@ -336,6 +342,10 @@ public class Chunjiin
 
             str += origin.substring(position, origin.length());
             et.setText(str);
+
+            // inputconnection
+            Log.d("ic", "inputConnection");
+            ic.commitText(str, 1);
 
             if(dotflag)
                 position++;

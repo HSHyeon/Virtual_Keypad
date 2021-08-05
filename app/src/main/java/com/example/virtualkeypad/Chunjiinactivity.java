@@ -72,6 +72,6 @@ public class Chunjiinactivity extends Activity
         btn[19] = (Button)findViewById(R.id.chunjiin_button_home);
         btn[20] = (Button)findViewById(R.id.chunjiin_button_menu);
 
-        chunjiin = new Chunjiin(et, btn);
+//        chunjiin = new Chunjiin(et, btn);
     }
 }

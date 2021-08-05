@@ -2,6 +2,7 @@ package com.example.virtualkeypad.IME
 
 import android.inputmethodservice.InputMethodService
 import android.view.View
+import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.EditText
 import com.example.virtualkeypad.Chunjiin
@@ -37,7 +38,14 @@ class MyIMEservice: InputMethodService() {
 
         btn[13] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_left) as Button
 
-        chunjiin = Chunjiin(et!!, btn)
+
+
+        val ic = currentInputConnection
+        chunjiin = Chunjiin(et!!, btn, ic)
+
+
+
+
 
 
         return myKeyboardView
