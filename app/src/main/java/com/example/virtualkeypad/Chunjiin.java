@@ -52,7 +52,7 @@ public class Chunjiin
 
     private Button btn[];
     private EditText et;
-    private int now_mode = HANGUL;
+    private int now_mode = NUMBER;
 
 
 
@@ -105,7 +105,7 @@ public class Chunjiin
             btn[i].setOnClickListener(btnlistner);
 
 
-        btn[12].setOnClickListener(btnchglistner);
+//        btn[12].setOnClickListener(btnchglistner);
         //setBtnText(now_mode);
     }
 
@@ -148,9 +148,9 @@ public class Chunjiin
                 case R.id.chunjiin_button_down:	input = 15;	break;
                 case R.id.chunjiin_button_ok:	input = 16;	break;
 
-                case R.id.chunjiin_button_cancel:	input = 17;	break;
-                case R.id.chunjiin_button_home:	input = 18;	break;
-                case R.id.chunjiin_button_menu:	input = 19;	break;
+                case R.id.chunjiin_button_func1:	input = 17;	break;
+                case R.id.chunjiin_button_func2:	input = 18;	break;
+                case R.id.chunjiin_button_func3:	input = 19;	break;
             }
             if(input == -1)
                 return;
@@ -189,12 +189,16 @@ public class Chunjiin
 //                IWindowManager manager = IWindowManager.Stub.asInterface(binder);
 //                manager.injectKeyEvent(new KeyEvent(KeyEvent.yourAction, KeyEvent.yourKeyCode),true);
 
+
+                // ime에서 왼쪽 한 칸 이동
+                ic.commitText("", -1);
             }
             // 우클릭
             else if (input == 13){
                 Toast.makeText(et.getContext(), "right", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+                ic.commitText("", 2);
             }
             // 위
             else if (input == 14){
@@ -217,34 +221,38 @@ public class Chunjiin
 
             // 취소
             else if (input == 17){
-                Toast.makeText(et.getContext(), "cancel(back)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(et.getContext(), "delete", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
             }
             // 홈
             else if (input == 18){
-                Toast.makeText(et.getContext(), "home", Toast.LENGTH_SHORT).show();
+                Toast.makeText(et.getContext(), "replay", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
             }
             // 메뉴(최근 앱 )
             else if (input == 19){
-                Toast.makeText(et.getContext(), "menu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(et.getContext(), "back", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
             }
 
             else if(now_mode == HANGUL) {
-//                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
+                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
                 hangulMake(input);
             }
 
-            else if((now_mode == ENGLISH || now_mode == UPPER_ENGLISH))
+            else if((now_mode == ENGLISH || now_mode == UPPER_ENGLISH)) {
+//                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
                 engMake(input);
+            }
 
-            else // if(now_mode == NUMBER)
+            // if(now_mode == NUMBER)
+            else {
+//
                 numMake(input);
-
+            }
             write(now_mode);
         }
     };
@@ -339,6 +347,7 @@ public class Chunjiin
                 str += "‥";
                 dotflag = true;
             }
+
 
             str += origin.substring(position, origin.length());
             et.setText(str);
@@ -496,8 +505,12 @@ public class Chunjiin
             engnum = " ";
         else if(input == 11) // 지우기
             delete();
-        else
+        else {
             engnum = Integer.toString(input);
+            // inputconnection
+            Log.d("ic", "inputConnection");
+            ic.commitText(engnum, 1);
+        }
 
         flag_initengnum = true;
     }
