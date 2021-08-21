@@ -21,7 +21,7 @@ class MyIMEservice: InputMethodService() {
 
 
         et = myKeyboardView.findViewById<EditText>(R.id.chunjiin_text)
-        btn = arrayOfNulls(21)
+        btn = arrayOfNulls(14)
         btn[0] = myKeyboardView.findViewById<View>(R.id.chunjiin_button0) as Button
         btn[1] = myKeyboardView.findViewById<View>(R.id.chunjiin_button1) as Button
         btn[2] = myKeyboardView.findViewById<View>(R.id.chunjiin_button2) as Button
@@ -37,13 +37,6 @@ class MyIMEservice: InputMethodService() {
         btn[12] = myKeyboardView.findViewById<View>(R.id.chunjiin_buttonex3) as Button
 
         btn[13] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_left) as Button
-        btn[14] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_right) as Button
-        btn[15] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_up) as Button
-        btn[16] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_down) as Button
-        btn[17] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_ok) as Button
-        btn[18] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_cancel) as Button
-        btn[19] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_home) as Button
-        btn[20] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_menu) as Button
 
 
 
