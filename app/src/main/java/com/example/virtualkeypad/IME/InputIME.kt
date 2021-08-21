@@ -8,13 +8,13 @@ import com.example.virtualkeypad.Chunjiinactivity
 class InputIME : InputMethodService(){
 
 
-    override fun onCreate(){
-        super.onCreate()
-        val intent = Intent(this, Chunjiinactivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        Log.d("keypad", "start Activity")
-        startActivity(intent)
-    }
+//    override fun onCreate(){
+//        super.onCreate()
+//        val intent = Intent(this, Chunjiinactivity::class.java)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//        Log.d("keypad", "start Activity")
+//        startActivity(intent)
+//    }
 
 //    override fun onCreateInputView(): View {
 //        val myKeyboardView = layoutInflater.inflate(R.id.)
