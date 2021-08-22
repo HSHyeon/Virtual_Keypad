@@ -54,6 +54,13 @@ public class Chunjiin
     private EditText et;
     private int now_mode = HANGUL;
 
+    //다시듣기
+    private int last_btn_id = -1;
+    private String[] btn_name = new String[]{
+            "0","1","2","3","4","5","6","7","8","9",
+            "띄어쓰기","지우기","left","right","up","down","ok",
+            "지우기","다시듣기","뒤로가기",
+    };
 
 
     private class Hangul
@@ -155,11 +162,15 @@ public class Chunjiin
             if(input == -1)
                 return;
 
+            // 다시듣기
+            if(input != 18)
+                last_btn_id = input;
 
             // 좌클릭
             if (input == 12){
 
 //                et.setText("hello, left");
+                Log.d("toast..", "left");
                 Toast.makeText(et.getContext(), "left", Toast.LENGTH_SHORT).show();
 
 //                오류남
@@ -192,44 +203,67 @@ public class Chunjiin
             }
             // 우클릭
             else if (input == 13){
+                Log.d("toast..", "right");
                 Toast.makeText(et.getContext(), "right", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
             }
             // 위
             else if (input == 14){
+                Log.d("toast..", "up");
                 Toast.makeText(et.getContext(), "up", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
             }
             // 아래
             else if (input == 15){
+                Log.d("toast..", "down");
                 Toast.makeText(et.getContext(), "down", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
             }
             // ok
             else if (input == 16){
-                Toast.makeText(et.getContext(), "ok(center)", Toast.LENGTH_SHORT).show();
+                Log.d("toast..", "ok");
+                Toast.makeText(et.getContext(), "ok", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_CENTER));
             }
 
             // 취소
             else if (input == 17){
-                Toast.makeText(et.getContext(), "cancel(back)", Toast.LENGTH_SHORT).show();
+                // 지우기
+                Log.d("toast..", "지우기");
+//                Toast.makeText(et.getContext(), "cancel(back)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(et.getContext(), "지우기", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
             }
             // 홈
             else if (input == 18){
-                Toast.makeText(et.getContext(), "home", Toast.LENGTH_SHORT).show();
+                Log.d("toast..", "다시듣기");
+                // 다시듣기
+                // 아직 아무 버튼도 안누른채로 다시듣기 했다면
+                if(last_btn_id == -1){
+//                    Toast.makeText(et.getContext(), "home", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(et.getContext(), "다시듣기", Toast.LENGTH_SHORT).show();
+                }
+                // 마지막으로 누른 버튼 다시 듣기
+                else{
+                    Log.d("toast..", btn_name[last_btn_id]);
+                    Toast.makeText(et.getContext(), btn_name[last_btn_id], Toast.LENGTH_SHORT).show();
+
+                }
+
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
             }
             // 메뉴(최근 앱 )
             else if (input == 19){
-                Toast.makeText(et.getContext(), "menu", Toast.LENGTH_SHORT).show();
+                // 뒤로가기
+                Log.d("toast..", "뒤로가기");
+//                Toast.makeText(et.getContext(), "menu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(et.getContext(), "뒤로가기", Toast.LENGTH_SHORT).show();
                 BaseInputConnection inputConnection = new BaseInputConnection(et, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
             }
@@ -490,15 +524,24 @@ public class Chunjiin
                 engnum = String.valueOf(ch[0]);
         }
     }
+    // 숫자
     private void numMake(int input)
     {
-        if(input == 10) // 띄어쓰기
+        if(input == 10) { // 띄어쓰기
             engnum = " ";
-        else if(input == 11) // 지우기
+            Log.d("toast..", "띄어쓰기");
+            Toast.makeText(et.getContext(), "띄어쓰기", Toast.LENGTH_SHORT).show();
+        }
+        else if(input == 11) { // 지우기
             delete();
-        else
+            Log.d("toast..", "지우기");
+            Toast.makeText(et.getContext(), "지우기", Toast.LENGTH_SHORT).show();
+        }
+        else {
             engnum = Integer.toString(input);
-
+            Log.d("toast..", ""+engnum);
+            Toast.makeText(et.getContext(), "" + engnum, Toast.LENGTH_SHORT).show();
+        }
         flag_initengnum = true;
     }
     private void hangulMake(int input)
