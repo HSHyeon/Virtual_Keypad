@@ -15,16 +15,17 @@ class MyIMEservice: InputMethodService() {
     public var chunjiin: Chunjiin? = null
     public lateinit var btn: Array<Button?>
     public var et: EditText? = null
-    public val myKeyboardView: View? = null
+    public lateinit var myKeyboardView: View
+
 
     override fun onCreateInputView(): View {
 //        var chunjiin: Chunjiin? = null
 //        lateinit var btn: Array<Button?>
 //        var et: EditText? = null
 
-        val myKeyboardView: View = layoutInflater.inflate(R.layout.in_app_keyboard, null)
+        myKeyboardView = layoutInflater.inflate(R.layout.in_app_keyboard, null)
 
-        et = myKeyboardView.findViewById<EditText>(R.id.chunjiin_text)
+//        et = myKeyboardView.findViewById<EditText>(R.id.chunjiin_text)
         btn = arrayOfNulls(18)
         btn[0] = myKeyboardView.findViewById<View>(R.id.chunjiin_button0) as Button
         btn[1] = myKeyboardView.findViewById<View>(R.id.chunjiin_button1) as Button
@@ -66,6 +67,13 @@ class MyIMEservice: InputMethodService() {
 //        chunjiin = Chunjiin(et!!, btn, ic)
 
         var context = this
-        chunjiin = Chunjiin(btn, ic, context)
+
+
+
+        chunjiin = Chunjiin(btn, ic, context, myKeyboardView)
+
+
     }
+
+
 }

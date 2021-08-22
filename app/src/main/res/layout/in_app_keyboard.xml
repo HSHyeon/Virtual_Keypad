@@ -7,19 +7,19 @@
     tools:context=".MainActivity">
 
     <!--        android:id="@+id/show_text"-->
-    <EditText
-        android:id="@+id/chunjiin_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:text=""
-        android:textIsSelectable="true"
+<!--    <EditText-->
+<!--        android:id="@+id/chunjiin_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="top"-->
+<!--        android:text=""-->
+<!--        android:textIsSelectable="true"-->
 
 
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--        app:layout_constraintBottom_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -27,10 +27,10 @@
         android:layout_height="wrap_content"
 
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <!--        <TextView-->
         <!--            android:id="@+id/show_text"-->
@@ -187,42 +187,42 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="65dp"-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:orientation="horizontal">-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="65dp"-->
+        <!--            android:layout_marginTop="12dp"-->
+        <!--            android:orientation="horizontal">-->
 
-<!--            <Button-->
-<!--                android:id="@+id/chunjiin_buttonex1"-->
-<!--                android:layout_width="56.69dp"-->
-<!--                android:layout_height="56.69dp"-->
-<!--                android:background="#BBBBBB"-->
-<!--                android:gravity="center"-->
-<!--                android:text="띄어쓰기"-->
-<!--                android:textSize="12sp" />-->
+        <!--            <Button-->
+        <!--                android:id="@+id/chunjiin_buttonex1"-->
+        <!--                android:layout_width="56.69dp"-->
+        <!--                android:layout_height="56.69dp"-->
+        <!--                android:background="#BBBBBB"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="띄어쓰기"-->
+        <!--                android:textSize="12sp" />-->
 
-<!--            <Button-->
-<!--                android:id="@+id/chunjiin_buttonex3"-->
-<!--                android:layout_width="56.69dp"-->
-<!--                android:layout_height="56.69dp"-->
-<!--                android:layout_marginLeft="50.394dp"-->
-<!--                android:background="#BBBBBB"-->
-<!--                android:gravity="center"-->
-<!--                android:text="자판전환"-->
-<!--                android:textSize="12sp" />-->
+        <!--            <Button-->
+        <!--                android:id="@+id/chunjiin_buttonex3"-->
+        <!--                android:layout_width="56.69dp"-->
+        <!--                android:layout_height="56.69dp"-->
+        <!--                android:layout_marginLeft="50.394dp"-->
+        <!--                android:background="#BBBBBB"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="자판전환"-->
+        <!--                android:textSize="12sp" />-->
 
-<!--            <Button-->
-<!--                android:id="@+id/chunjiin_buttonex2"-->
-<!--                android:layout_width="56.69dp"-->
-<!--                android:layout_height="56.69dp"-->
-<!--                android:layout_marginLeft="50.394dp"-->
-<!--                android:background="#BBBBBB"-->
-<!--                android:gravity="center"-->
-<!--                android:text="지우기"-->
-<!--                android:textSize="12sp" />-->
-<!--        </LinearLayout>-->
+        <!--            <Button-->
+        <!--                android:id="@+id/chunjiin_buttonex2"-->
+        <!--                android:layout_width="56.69dp"-->
+        <!--                android:layout_height="56.69dp"-->
+        <!--                android:layout_marginLeft="50.394dp"-->
+        <!--                android:background="#BBBBBB"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="지우기"-->
+        <!--                android:textSize="12sp" />-->
+        <!--        </LinearLayout>-->
 
 
         <Button
@@ -239,9 +239,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
@@ -322,6 +322,12 @@
                 android:text="back"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="60sp" />
     </LinearLayout>
 
 

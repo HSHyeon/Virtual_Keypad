@@ -91,13 +91,15 @@ public class Chunjiin
     private boolean flag_upper = true;
 
     private InputConnection ic;
+    private View view;
 
 //    public Chunjiin(EditText editText, Button bt[], InputConnection ic)
-    public Chunjiin( Button bt[], InputConnection ic, Context context)
+    public Chunjiin( Button bt[], InputConnection ic, Context context, View view)
     {
 //        et = editText;
 //        et.setOnTouchListener(otl);
         this.context = context;
+        this.view = view;
         setButton(bt);
         this.ic = ic;
     }
@@ -173,24 +175,10 @@ public class Chunjiin
 //                되긴 하는데 뭔가 이상
                 // 이전 입력한 값도 같이 나옴
                 // NAVIGATION이 안 됨
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                // #이 출력됨
-//                  inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_POUND));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
-//                Log.d("LEFT", "KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT : "+(KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, 105));
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                // 왼쪽 움직임
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
 
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SOFT_LEFT));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.META_META_LEFT_ON));
-                // 왼쪽 움직임
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
-
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MOVE_HOME));
-
-//                IBinder binder = ServiceManager.getService("window");
-//                IWindowManager manager = IWindowManager.Stub.asInterface(binder);
-//                manager.injectKeyEvent(new KeyEvent(KeyEvent.yourAction, KeyEvent.yourKeyCode),true);
 
 
                 // ime에서 왼쪽 한 칸 이동
@@ -199,34 +187,35 @@ public class Chunjiin
             // 우클릭
             else if (input == 13){
                 Toast.makeText(context, "right", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                BaseInputConnection inputConnection = new BaseInputConnection(view, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-                ic.commitText("", 2);
+//                ic.commitText("", 2);
             }
             // 위
             else if (input == 14){
                 Toast.makeText(context, "up", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
             }
             // 아래
             else if (input == 15){
                 Toast.makeText(context, "down", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
             }
             // ok
             else if (input == 16){
                 Toast.makeText(context, "ok(center)", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                BaseInputConnection inputConnection = new BaseInputConnection(view, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_CENTER));
             }
 
             // 취소
             else if (input == 17){
                 Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+
             }
             // 홈
             else if (input == 18){
