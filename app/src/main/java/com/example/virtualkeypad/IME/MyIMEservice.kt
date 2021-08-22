@@ -2,6 +2,7 @@ package com.example.virtualkeypad.IME
 
 import android.inputmethodservice.InputMethodService
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.EditText
@@ -11,14 +12,15 @@ import com.example.virtualkeypad.R
 
 class MyIMEservice: InputMethodService() {
 
-//    public var chunjiin: Chunjiin? = null
-//    public lateinit var btn: Array<Button?>
-//    public var et: EditText? = null
+    public var chunjiin: Chunjiin? = null
+    public lateinit var btn: Array<Button?>
+    public var et: EditText? = null
+    public val myKeyboardView: View? = null
 
     override fun onCreateInputView(): View {
-        var chunjiin: Chunjiin? = null
-        lateinit var btn: Array<Button?>
-        var et: EditText? = null
+//        var chunjiin: Chunjiin? = null
+//        lateinit var btn: Array<Button?>
+//        var et: EditText? = null
 
         val myKeyboardView: View = layoutInflater.inflate(R.layout.in_app_keyboard, null)
 
@@ -48,9 +50,22 @@ class MyIMEservice: InputMethodService() {
         btn[16] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_func2) as Button
         btn[17] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_func3) as Button
 
-        val ic = currentInputConnection
-        chunjiin = Chunjiin(et!!, btn, ic)
+//        val ic = currentInputConnection
+////        chunjiin = Chunjiin(et!!, btn, ic)
+//
+//        var context = this
+//        chunjiin = Chunjiin(btn, ic, context)
 
         return myKeyboardView
+    }
+
+    override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
+        super.onStartInputView(info, restarting)
+
+        val ic = currentInputConnection
+//        chunjiin = Chunjiin(et!!, btn, ic)
+
+        var context = this
+        chunjiin = Chunjiin(btn, ic, context)
     }
 }
