@@ -55,7 +55,7 @@ public class Chunjiin
     private int now_mode = HANGUL;
 
     //다시듣기
-    //다시듣기 재업로드, 합치기
+    //다시듣기 재업로드, 합치기, 새폴더
     private int last_btn_id = -1;
     private String[] btn_name = new String[]{
             "0","1","2","3","4","5","6","7","8","9",
