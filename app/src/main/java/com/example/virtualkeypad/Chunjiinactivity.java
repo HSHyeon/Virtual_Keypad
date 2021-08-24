@@ -56,9 +56,10 @@ public class Chunjiinactivity extends Activity
         btn[7] = (Button)findViewById(R.id.chunjiin_button7);
         btn[8] = (Button)findViewById(R.id.chunjiin_button8);
         btn[9] = (Button)findViewById(R.id.chunjiin_button9);
-        btn[10] = (Button)findViewById(R.id.chunjiin_buttonex1);
-        btn[11] = (Button)findViewById(R.id.chunjiin_buttonex2);
-        btn[12] = (Button)findViewById(R.id.chunjiin_buttonex3);
+
+//        btn[10] = (Button)findViewById(R.id.chunjiin_buttonex1);
+//        btn[11] = (Button)findViewById(R.id.chunjiin_buttonex2);
+//        btn[12] = (Button)findViewById(R.id.chunjiin_buttonex3);
 
         // 방향키
         btn[13] = (Button)findViewById(R.id.chunjiin_button_left);
@@ -67,10 +68,10 @@ public class Chunjiinactivity extends Activity
         btn[16] = (Button)findViewById(R.id.chunjiin_button_down);
         btn[17] = (Button)findViewById(R.id.chunjiin_button_ok);
 
-        // 취소, 홈, 최근앱버튼
-        btn[18] = (Button)findViewById(R.id.chunjiin_button_cancel);
-        btn[19] = (Button)findViewById(R.id.chunjiin_button_home);
-        btn[20] = (Button)findViewById(R.id.chunjiin_button_menu);
+        // 지우기 , 다시듣기, 뒤로가기 버튼
+        btn[18] = (Button)findViewById(R.id.chunjiin_button_func1);
+        btn[19] = (Button)findViewById(R.id.chunjiin_button_func2);
+        btn[20] = (Button)findViewById(R.id.chunjiin_button_func3);
 
 //        chunjiin = new Chunjiin(et, btn);
     }

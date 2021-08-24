@@ -52,16 +52,20 @@ public class Chunjiin
 
     private Button btn[];
     private EditText et;
-    private int now_mode = HANGUL;
+    private int now_mode = NUMBER;
+
 
     //다시듣기
     //다시듣기 재업로드, 합치기, 새폴더
     private int last_btn_id = -1;
     private String[] btn_name = new String[]{
             "0","1","2","3","4","5","6","7","8","9",
-            "띄어쓰기","지우기","left","right","up","down","ok",
-            "지우기","다시듣기","뒤로가기",
+            "nothing","nothing","left","right","up","down","ok",
+            "delete","replay","back",
     };
+
+    private Context context;
+
 
 
     private class Hangul
@@ -98,11 +102,15 @@ public class Chunjiin
     private boolean flag_upper = true;
 
     private InputConnection ic;
+    private View view;
 
-    public Chunjiin(EditText editText, Button bt[], InputConnection ic)
+//    public Chunjiin(EditText editText, Button bt[], InputConnection ic)
+    public Chunjiin( Button bt[], InputConnection ic, Context context, View view)
     {
-        et = editText;
-        et.setOnTouchListener(otl);
+//        et = editText;
+//        et.setOnTouchListener(otl);
+        this.context = context;
+        this.view = view;
         setButton(bt);
         this.ic = ic;
     }
@@ -113,7 +121,7 @@ public class Chunjiin
             btn[i].setOnClickListener(btnlistner);
 
 
-        btn[12].setOnClickListener(btnchglistner);
+//        btn[12].setOnClickListener(btnchglistner);
         //setBtnText(now_mode);
     }
 
@@ -156,9 +164,9 @@ public class Chunjiin
                 case R.id.chunjiin_button_down:	input = 15;	break;
                 case R.id.chunjiin_button_ok:	input = 16;	break;
 
-                case R.id.chunjiin_button_cancel:	input = 17;	break;
-                case R.id.chunjiin_button_home:	input = 18;	break;
-                case R.id.chunjiin_button_menu:	input = 19;	break;
+                case R.id.chunjiin_button_func1:	input = 17;	break; // 지우기
+                case R.id.chunjiin_button_func2:	input = 18;	break; // 다시듣기
+                case R.id.chunjiin_button_func3:	input = 19;	break; // 뒤로가기
             }
             if(input == -1)
                 return;
@@ -171,8 +179,10 @@ public class Chunjiin
             if (input == 12){
 
 //                et.setText("hello, left");
+
                 Log.d("toast..", "left");
-                Toast.makeText(et.getContext(), "left", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "left", Toast.LENGTH_SHORT).show();
+
 
 //                오류남
 //                Instrumentation inst = new Instrumentation();
@@ -182,104 +192,105 @@ public class Chunjiin
 //                되긴 하는데 뭔가 이상
                 // 이전 입력한 값도 같이 나옴
                 // NAVIGATION이 안 됨
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                // #이 출력됨
-//                  inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_POUND));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
-//                Log.d("LEFT", "KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT : "+(KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, 105));
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                // 왼쪽 움직임
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
 
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SOFT_LEFT));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.META_META_LEFT_ON));
-                // 왼쪽 움직임
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
 
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MOVE_HOME));
 
-//                IBinder binder = ServiceManager.getService("window");
-//                IWindowManager manager = IWindowManager.Stub.asInterface(binder);
-//                manager.injectKeyEvent(new KeyEvent(KeyEvent.yourAction, KeyEvent.yourKeyCode),true);
-
+                // ime에서 왼쪽 한 칸 이동
+                ic.commitText("", -1);
             }
             // 우클릭
             else if (input == 13){
+
                 Log.d("toast..", "right");
-                Toast.makeText(et.getContext(), "right", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                Toast.makeText(context, "right", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(view, true);
+
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+//                ic.commitText("", 2);
             }
             // 위
             else if (input == 14){
                 Log.d("toast..", "up");
-                Toast.makeText(et.getContext(), "up", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
+                Toast.makeText(context, "up", Toast.LENGTH_SHORT).show();
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
             }
             // 아래
             else if (input == 15){
                 Log.d("toast..", "down");
-                Toast.makeText(et.getContext(), "down", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
+                Toast.makeText(context, "down", Toast.LENGTH_SHORT).show();
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
             }
             // ok
             else if (input == 16){
                 Log.d("toast..", "ok");
-                Toast.makeText(et.getContext(), "ok", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+                Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
+                BaseInputConnection inputConnection = new BaseInputConnection(view, true);
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_CENTER));
             }
 
             // 취소
             else if (input == 17){
                 // 지우기
-                Log.d("toast..", "지우기");
+                Log.d("toast..", "delete");
 //                Toast.makeText(et.getContext(), "cancel(back)", Toast.LENGTH_SHORT).show();
-                Toast.makeText(et.getContext(), "지우기", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+                Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
+
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+
             }
             // 홈
             else if (input == 18){
-                Log.d("toast..", "다시듣기");
+                Log.d("toast..", "replay");
                 // 다시듣기
                 // 아직 아무 버튼도 안누른채로 다시듣기 했다면
                 if(last_btn_id == -1){
 //                    Toast.makeText(et.getContext(), "home", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(et.getContext(), "다시듣기", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "replay", Toast.LENGTH_SHORT).show();
                 }
                 // 마지막으로 누른 버튼 다시 듣기
                 else{
                     Log.d("toast..", btn_name[last_btn_id]);
-                    Toast.makeText(et.getContext(), btn_name[last_btn_id], Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, btn_name[last_btn_id], Toast.LENGTH_SHORT).show();
 
                 }
 
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
             }
             // 메뉴(최근 앱 )
             else if (input == 19){
                 // 뒤로가기
                 Log.d("toast..", "뒤로가기");
 //                Toast.makeText(et.getContext(), "menu", Toast.LENGTH_SHORT).show();
-                Toast.makeText(et.getContext(), "뒤로가기", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
+//                Toast.makeText(et.getContext(), "뒤로가기", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(context, "back", Toast.LENGTH_SHORT).show();
+
+//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
+//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
             }
 
             else if(now_mode == HANGUL) {
-//                Toast.makeText(et.getContext(), "한글모드", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "한글모드", Toast.LENGTH_SHORT).show();
                 hangulMake(input);
             }
 
-            else if((now_mode == ENGLISH || now_mode == UPPER_ENGLISH))
+            else if((now_mode == ENGLISH || now_mode == UPPER_ENGLISH)) {
+//                Toast.makeText(context, "한글모드", Toast.LENGTH_SHORT).show();
                 engMake(input);
+            }
 
-            else // if(now_mode == NUMBER)
+            // if(now_mode == NUMBER)
+            else {
+//
                 numMake(input);
-
+            }
             write(now_mode);
         }
     };
@@ -301,158 +312,159 @@ public class Chunjiin
     }
     private void write(int mode)
     {
-        int position = et.getSelectionStart();
-        String origin = "";
-        String str = "";
-        origin = et.getText().toString();
-
-        if(mode == HANGUL)
-        {
-            boolean dotflag = false;
-            boolean doubleflag = false;
-            boolean spaceflag = false;
-            boolean impossiblejongsungflag = false;
-            char unicode;
-            String real_jongsung = checkDouble(hangul.jongsung, hangul.jongsung2);
-            if(real_jongsung.length() == 0)
-            {
-                real_jongsung = hangul.jongsung;
-                if(hangul.jongsung2.length() != 0)
-                    doubleflag = true;
-            }
-
-            //bug fixed, 16.4.22 ~
-            //added impossible jongsungflag.
-            if(hangul.jongsung.equals("ㅃ") || hangul.jongsung.equals("ㅉ") || hangul.jongsung.equals("ㄸ"))
-            {
-                doubleflag = true;
-                impossiblejongsungflag = true;
-                unicode = (char)getUnicode("");
-            }
-            else
-                unicode = (char)getUnicode(real_jongsung);
-            // ~ bug fixed, 16.4.22
-
-            if(!hangul.flag_writing)
-                str += origin.substring(0, position);
-            else if(hangul.flag_dotused)
-            {
-                if(hangul.chosung.length() == 0)
-                    str += origin.substring(0, position-1);
-                else
-                    str += origin.substring(0, position-2);
-            }
-            else if(hangul.flag_doubled)
-                str += origin.substring(0, position-2);
-            else
-                str += origin.substring(0, position-1);
-
-
-            if(unicode != 0)
-                str += String.valueOf(unicode);
-            if(hangul.flag_space)
-            {
-                str += " ";
-                hangul.flag_space = false;
-                spaceflag = true;
-            }
-
-            if(doubleflag)
-            {
-                if(impossiblejongsungflag)
-                    str += hangul.jongsung;
-                else
-                    str += hangul.jongsung2;
-            }
-            if(hangul.jungsung.equals("·"))
-            {
-                str += "·";
-                dotflag = true;
-            }
-            else if(hangul.jungsung.equals("‥"))
-            {
-                str += "‥";
-                dotflag = true;
-            }
-
-            str += origin.substring(position, origin.length());
-            et.setText(str);
-
-            // inputconnection
-            Log.d("ic", "inputConnection");
-            ic.commitText(str, 1);
-
-            if(dotflag)
-                position++;
-            if(doubleflag)
-            {
-                if(!hangul.flag_doubled)
-                    position++;
-                hangul.flag_doubled = true;
-            }
-            else
-            {
-                if(hangul.flag_doubled)
-                    position--;
-                hangul.flag_doubled = false;
-            }
-            if(spaceflag)
-                position++;
-            if(unicode == 0 && dotflag == false)
-                position--;
-            if(hangul.flag_addcursor)
-            {
-                hangul.flag_addcursor = false;
-                position++;
-            }
-
-            if(hangul.flag_dotused)
-            {
-                if(hangul.chosung.length() == 0 && dotflag == false)
-                    et.setSelection(position);
-                else
-                    et.setSelection(position-1);
-            }
-            else if(!hangul.flag_writing && dotflag == false)
-                et.setSelection(position + 1);
-            else
-                et.setSelection(position);
-
-            hangul.flag_dotused = false;
-            hangul.flag_writing = (unicode == 0 && dotflag == false) ? false : true;
-        }
-        else //if(mode == ENGLISH || mode == UPPER_ENGLISH || mode == NUMBER)
-        {
-            if(flag_engdelete)
-                str += origin.substring(0, position-1);
-            else
-                str += origin.substring(0, position);
-
-            if(flag_upper || mode == NUMBER)
-                str += engnum;
-            else
-                str += engnum.toLowerCase();
-
-            if(flag_engdelete)
-            {
-                str += origin.substring(position, origin.length());
-                et.setText(str);
-                et.setSelection(position);
-                flag_engdelete = false;
-            }
-            else
-            {
-                str += origin.substring(position, origin.length());
-                et.setText(str);
-                if(engnum.length() == 0)
-                    et.setSelection(position);
-                else
-                    et.setSelection(position+1);
-            }
-
-            if(flag_initengnum)
-                init_engnum();
-        }
+//        int position = et.getSelectionStart();
+//        String origin = "";
+//        String str = "";
+//        origin = et.getText().toString();
+//
+//        if(mode == HANGUL)
+//        {
+//            boolean dotflag = false;
+//            boolean doubleflag = false;
+//            boolean spaceflag = false;
+//            boolean impossiblejongsungflag = false;
+//            char unicode;
+//            String real_jongsung = checkDouble(hangul.jongsung, hangul.jongsung2);
+//            if(real_jongsung.length() == 0)
+//            {
+//                real_jongsung = hangul.jongsung;
+//                if(hangul.jongsung2.length() != 0)
+//                    doubleflag = true;
+//            }
+//
+//            //bug fixed, 16.4.22 ~
+//            //added impossible jongsungflag.
+//            if(hangul.jongsung.equals("ㅃ") || hangul.jongsung.equals("ㅉ") || hangul.jongsung.equals("ㄸ"))
+//            {
+//                doubleflag = true;
+//                impossiblejongsungflag = true;
+//                unicode = (char)getUnicode("");
+//            }
+//            else
+//                unicode = (char)getUnicode(real_jongsung);
+//            // ~ bug fixed, 16.4.22
+//
+//            if(!hangul.flag_writing)
+//                str += origin.substring(0, position);
+//            else if(hangul.flag_dotused)
+//            {
+//                if(hangul.chosung.length() == 0)
+//                    str += origin.substring(0, position-1);
+//                else
+//                    str += origin.substring(0, position-2);
+//            }
+//            else if(hangul.flag_doubled)
+//                str += origin.substring(0, position-2);
+//            else
+//                str += origin.substring(0, position-1);
+//
+//
+//            if(unicode != 0)
+//                str += String.valueOf(unicode);
+//            if(hangul.flag_space)
+//            {
+//                str += " ";
+//                hangul.flag_space = false;
+//                spaceflag = true;
+//            }
+//
+//            if(doubleflag)
+//            {
+//                if(impossiblejongsungflag)
+//                    str += hangul.jongsung;
+//                else
+//                    str += hangul.jongsung2;
+//            }
+//            if(hangul.jungsung.equals("·"))
+//            {
+//                str += "·";
+//                dotflag = true;
+//            }
+//            else if(hangul.jungsung.equals("‥"))
+//            {
+//                str += "‥";
+//                dotflag = true;
+//            }
+//
+//
+//            str += origin.substring(position, origin.length());
+//            et.setText(str);
+//
+//            // inputconnection
+//            Log.d("ic", "inputConnection");
+//            ic.commitText(str, 1);
+//
+//            if(dotflag)
+//                position++;
+//            if(doubleflag)
+//            {
+//                if(!hangul.flag_doubled)
+//                    position++;
+//                hangul.flag_doubled = true;
+//            }
+//            else
+//            {
+//                if(hangul.flag_doubled)
+//                    position--;
+//                hangul.flag_doubled = false;
+//            }
+//            if(spaceflag)
+//                position++;
+//            if(unicode == 0 && dotflag == false)
+//                position--;
+//            if(hangul.flag_addcursor)
+//            {
+//                hangul.flag_addcursor = false;
+//                position++;
+//            }
+//
+//            if(hangul.flag_dotused)
+//            {
+//                if(hangul.chosung.length() == 0 && dotflag == false)
+//                    et.setSelection(position);
+//                else
+//                    et.setSelection(position-1);
+//            }
+//            else if(!hangul.flag_writing && dotflag == false)
+//                et.setSelection(position + 1);
+//            else
+//                et.setSelection(position);
+//
+//            hangul.flag_dotused = false;
+//            hangul.flag_writing = (unicode == 0 && dotflag == false) ? false : true;
+//        }
+//        else //if(mode == ENGLISH || mode == UPPER_ENGLISH || mode == NUMBER)
+//        {
+//            if(flag_engdelete)
+//                str += origin.substring(0, position-1);
+//            else
+//                str += origin.substring(0, position);
+//
+//            if(flag_upper || mode == NUMBER)
+//                str += engnum;
+//            else
+//                str += engnum.toLowerCase();
+//
+//            if(flag_engdelete)
+//            {
+//                str += origin.substring(position, origin.length());
+//                et.setText(str);
+//                et.setSelection(position);
+//                flag_engdelete = false;
+//            }
+//            else
+//            {
+//                str += origin.substring(position, origin.length());
+//                et.setText(str);
+//                if(engnum.length() == 0)
+//                    et.setSelection(position);
+//                else
+//                    et.setSelection(position+1);
+//            }
+//
+//            if(flag_initengnum)
+//                init_engnum();
+//        }
     }
     private void delete()
     {
@@ -531,18 +543,24 @@ public class Chunjiin
         if(input == 10) { // 띄어쓰기
             engnum = " ";
             Log.d("toast..", "띄어쓰기");
-            Toast.makeText(et.getContext(), "띄어쓰기", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "띄어쓰기", Toast.LENGTH_SHORT).show();
         }
         else if(input == 11) { // 지우기
             delete();
             Log.d("toast..", "지우기");
-            Toast.makeText(et.getContext(), "지우기", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "지우기", Toast.LENGTH_SHORT).show();
         }
         else {
             engnum = Integer.toString(input);
+            // inputconnection
+            Log.d("ic", "inputConnection");
             Log.d("toast..", ""+engnum);
-            Toast.makeText(et.getContext(), "" + engnum, Toast.LENGTH_SHORT).show();
+            ic.commitText(engnum, 1);
+
+            Toast.makeText(context, "" + engnum, Toast.LENGTH_SHORT).show();
         }
+
+
         flag_initengnum = true;
     }
     private void hangulMake(int input)

@@ -126,8 +126,8 @@ class MainActivity : Activity() {
         {
             // 다른 사람이 만든 천지인 사용하려면 여기 주석 해제
             // 코틀린으로 바꾸면 자꾸 오류나서 자바 파일 그대로 사용
-            val intent = Intent(this, Chunjiinactivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, Chunjiinactivity::class.java)
+//            startActivity(intent)
 
             val action = event.action
             val curX = event.x //눌린 곳의 X좌표

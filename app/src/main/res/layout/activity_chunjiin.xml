@@ -186,42 +186,42 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60.09dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="60.09dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <Button
-                android:id="@+id/chunjiin_buttonex1"
-                android:layout_width="62.99dp"
-                android:layout_height="62.99dp"
-                android:background="#BBBBBB"
-                android:gravity="center"
-                android:text="띄어쓰기"
-                android:textSize="12sp" />
+<!--            <Button-->
+<!--                android:id="@+id/chunjiin_buttonex1"-->
+<!--                android:layout_width="62.99dp"-->
+<!--                android:layout_height="62.99dp"-->
+<!--                android:background="#BBBBBB"-->
+<!--                android:gravity="center"-->
+<!--                android:text="띄어쓰기"-->
+<!--                android:textSize="12sp" />-->
 
-            <Button
-                android:id="@+id/chunjiin_buttonex3"
-                android:layout_width="62.99dp"
-                android:layout_height="62.99dp"
-                android:layout_marginLeft="62.99dp"
-                android:background="#BBBBBB"
-                android:gravity="center"
-                android:text="자판전환"
-                android:textSize="12sp" />
+<!--            <Button-->
+<!--                android:id="@+id/chunjiin_buttonex3"-->
+<!--                android:layout_width="62.99dp"-->
+<!--                android:layout_height="62.99dp"-->
+<!--                android:layout_marginLeft="62.99dp"-->
+<!--                android:background="#BBBBBB"-->
+<!--                android:gravity="center"-->
+<!--                android:text="자판전환"-->
+<!--                android:textSize="12sp" />-->
 
-            <Button
-                android:id="@+id/chunjiin_buttonex2"
-                android:layout_width="62.99dp"
-                android:layout_height="62.99dp"
-                android:layout_marginLeft="62.99dp"
-                android:background="#BBBBBB"
-                android:gravity="center"
-                android:text="지우기"
-                android:textSize="12sp" />
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/chunjiin_buttonex2"-->
+<!--                android:layout_width="62.99dp"-->
+<!--                android:layout_height="62.99dp"-->
+<!--                android:layout_marginLeft="62.99dp"-->
+<!--                android:background="#BBBBBB"-->
+<!--                android:gravity="center"-->
+<!--                android:text="지우기"-->
+<!--                android:textSize="12sp" />-->
+<!--        </LinearLayout>-->
 
 
         <Button
@@ -292,32 +292,32 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/chunjiin_button_cancel"
+                android:id="@+id/chunjiin_button_func1"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
-                android:text="c"
+                android:text="del"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/chunjiin_button_home"
+                android:id="@+id/chunjiin_button_func2"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
-                android:text="h"
+                android:text="re"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/chunjiin_button_menu"
+                android:id="@+id/chunjiin_button_func3"
                 android:layout_width="62.99dp"
                 android:layout_height="62.99dp"
                 android:layout_marginLeft="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
-                android:text="m"
+                android:text="back"
                 android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>

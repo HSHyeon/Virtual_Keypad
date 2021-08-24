@@ -274,8 +274,10 @@ class Chunjiin_kt( private val et: EditText, bt: Array<Button?>) {
 
     private fun numMake(input: Int) {
         if (input == 10) // 띄어쓰기
-            engnum = " " else if (input == 11) // 지우기
-            delete() else engnum = Integer.toString(input)
+            engnum = " "
+        else if (input == 11) // 지우기
+            delete()
+        else engnum = Integer.toString(input)
         flag_initengnum = true
     }
 

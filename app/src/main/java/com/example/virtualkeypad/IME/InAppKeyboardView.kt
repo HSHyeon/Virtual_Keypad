@@ -13,6 +13,7 @@ class InAppKeyboardView @JvmOverloads constructor(
             init {
                 LayoutInflater
                     .from(context)
-                    .inflate(R.layout.activity_chunjiin, this, true)
+//                    .inflate(R.layout.activity_chunjiin, this, true)
+                    .inflate(R.layout.in_app_keyboard, this, true)
             }
 }
