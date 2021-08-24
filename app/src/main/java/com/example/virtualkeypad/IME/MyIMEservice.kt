@@ -24,9 +24,10 @@ class MyIMEservice: InputMethodService() {
 //        var et: EditText? = null
 
         myKeyboardView = layoutInflater.inflate(R.layout.in_app_keyboard, null)
-
 //        et = myKeyboardView.findViewById<EditText>(R.id.chunjiin_text)
+        //        btn = arrayOfNulls(21)
         btn = arrayOfNulls(18)
+
         btn[0] = myKeyboardView.findViewById<View>(R.id.chunjiin_button0) as Button
         btn[1] = myKeyboardView.findViewById<View>(R.id.chunjiin_button1) as Button
         btn[2] = myKeyboardView.findViewById<View>(R.id.chunjiin_button2) as Button
@@ -37,6 +38,7 @@ class MyIMEservice: InputMethodService() {
         btn[7] = myKeyboardView.findViewById<View>(R.id.chunjiin_button7) as Button
         btn[8] = myKeyboardView.findViewById<View>(R.id.chunjiin_button8) as Button
         btn[9] = myKeyboardView.findViewById<View>(R.id.chunjiin_button9) as Button
+
 //        btn[10] = myKeyboardView.findViewById<View>(R.id.chunjiin_buttonex1) as Button
 //        btn[11] = myKeyboardView.findViewById<View>(R.id.chunjiin_buttonex2) as Button
 //        btn[12] = myKeyboardView.findViewById<View>(R.id.chunjiin_buttonex3) as Button

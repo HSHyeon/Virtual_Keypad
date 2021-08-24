@@ -227,6 +227,7 @@
 
         <Button
             android:id="@+id/chunjiin_button_up"
+
             android:layout_width="56.69dp"
             android:layout_height="56.69dp"
             android:layout_gravity="center"
@@ -276,6 +277,7 @@
 
         <Button
             android:id="@+id/chunjiin_button_down"
+
             android:layout_width="56.69dp"
             android:layout_height="56.69dp"
             android:layout_gravity="center"
@@ -303,6 +305,7 @@
                 android:textSize="14sp" />
 
             <Button
+
                 android:id="@+id/chunjiin_button_func2"
                 android:layout_width="56.69dp"
                 android:layout_height="56.69dp"
