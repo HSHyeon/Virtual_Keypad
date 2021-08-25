@@ -60,7 +60,7 @@ public class Chunjiin
     private int last_btn_id = -1;
     private String[] btn_name = new String[]{
             "0","1","2","3","4","5","6","7","8","9",
-            "nothing","nothing","left","right","up","down","ok",
+            "star","sharp","left","right","up","down","ok",
             "delete","replay","back",
     };
 
@@ -155,8 +155,9 @@ public class Chunjiin
                 case R.id.chunjiin_button7:	input = 7;	break;
                 case R.id.chunjiin_button8:	input = 8;	break;
                 case R.id.chunjiin_button9:	input = 9;	break;
-                case R.id.chunjiin_buttonex1:	input = 10;	break;
-                case R.id.chunjiin_buttonex2:	input = 11;	break;
+
+                case R.id.button_star:	input = 10;	break;
+                case R.id.button_sharp:	input = 11;	break;
 
                 case R.id.chunjiin_button_left:	input = 12;	break;
                 case R.id.chunjiin_button_right:	input = 13;	break;
@@ -175,8 +176,23 @@ public class Chunjiin
             if(input != 18)
                 last_btn_id = input;
 
+
+
+            // * 버튼
+            if (input == 10) {
+                Log.d("toast..", "* 버튼");
+                Toast.makeText(context, "star", Toast.LENGTH_SHORT).show();
+                ic.commitText("*", 1);
+            }
+            // # 버튼
+            else if (input == 11) {
+                Log.d("toast..", "# 버튼");
+                Toast.makeText(context, "sharp", Toast.LENGTH_SHORT).show();
+                ic.commitText("#", 1);
+            }
+
             // 좌클릭
-            if (input == 12){
+            else if (input == 12){
 
 //                et.setText("hello, left");
 
@@ -206,45 +222,42 @@ public class Chunjiin
 
                 Log.d("toast..", "right");
                 Toast.makeText(context, "right", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(view, true);
 
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
 //                ic.commitText("", 2);
             }
             // 위
             else if (input == 14){
                 Log.d("toast..", "up");
                 Toast.makeText(context, "up", Toast.LENGTH_SHORT).show();
-//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_UP));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_DPAD_UP));
             }
             // 아래
             else if (input == 15){
                 Log.d("toast..", "down");
                 Toast.makeText(context, "down", Toast.LENGTH_SHORT).show();
-//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_DOWN));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_DPAD_DOWN));
             }
             // ok
             else if (input == 16){
                 Log.d("toast..", "ok");
                 Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
-                BaseInputConnection inputConnection = new BaseInputConnection(view, true);
-                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_CENTER));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_ENTER));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_ENTER));
             }
 
-            // 취소
-            else if (input == 17){
-                // 지우기
+            // 지우기
+            // https://stackoverflow.com/questions/24493293/input-connection-how-to-delete-selected-text
+            else if(input == 17) {
+                ic.deleteSurroundingText(1, 0);
+//                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DEL));
+//                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_DEL));
                 Log.d("toast..", "delete");
-//                Toast.makeText(et.getContext(), "cancel(back)", Toast.LENGTH_SHORT).show();
                 Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
-
-//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
-
             }
-            // 홈
+            // 다시듣기
             else if (input == 18){
                 Log.d("toast..", "replay");
                 // 다시듣기
@@ -263,18 +276,17 @@ public class Chunjiin
 //                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
 //                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
             }
-            // 메뉴(최근 앱 )
-            else if (input == 19){
-                // 뒤로가기
+            // https://stackoverflow.com/questions/24493293/input-connection-how-to-delete-selected-text
+            // 뒤로가기
+            else if(input == 19) {
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_BACK));
                 Log.d("toast..", "뒤로가기");
-//                Toast.makeText(et.getContext(), "menu", Toast.LENGTH_SHORT).show();
-//                Toast.makeText(et.getContext(), "뒤로가기", Toast.LENGTH_SHORT).show();
-
                 Toast.makeText(context, "back", Toast.LENGTH_SHORT).show();
-
-//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
             }
+
+
+
 
             else if(now_mode == HANGUL) {
                 Toast.makeText(context, "한글모드", Toast.LENGTH_SHORT).show();
