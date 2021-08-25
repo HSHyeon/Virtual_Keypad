@@ -177,7 +177,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button_shap"
+                android:id="@+id/button_sharp"
                 android:layout_width="56.69dp"
                 android:layout_height="56.69dp"
                 android:layout_marginLeft="50.394dp"

@@ -26,7 +26,7 @@ class MyIMEservice: InputMethodService() {
         myKeyboardView = layoutInflater.inflate(R.layout.in_app_keyboard, null)
 //        et = myKeyboardView.findViewById<EditText>(R.id.chunjiin_text)
         //        btn = arrayOfNulls(21)
-        btn = arrayOfNulls(18)
+        btn = arrayOfNulls(20)
 
         btn[0] = myKeyboardView.findViewById<View>(R.id.chunjiin_button0) as Button
         btn[1] = myKeyboardView.findViewById<View>(R.id.chunjiin_button1) as Button
@@ -43,6 +43,8 @@ class MyIMEservice: InputMethodService() {
 //        btn[11] = myKeyboardView.findViewById<View>(R.id.chunjiin_buttonex2) as Button
 //        btn[12] = myKeyboardView.findViewById<View>(R.id.chunjiin_buttonex3) as Button
 
+
+
         btn[10] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_left) as Button
         btn[11] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_right) as Button
         btn[12] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_up) as Button
@@ -52,6 +54,9 @@ class MyIMEservice: InputMethodService() {
         btn[15] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_func1) as Button
         btn[16] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_func2) as Button
         btn[17] = myKeyboardView.findViewById<View>(R.id.chunjiin_button_func3) as Button
+
+        btn[18] = myKeyboardView.findViewById<View>(R.id.button_star) as Button
+        btn[19] = myKeyboardView.findViewById<View>(R.id.button_sharp) as Button
 
 //        val ic = currentInputConnection
 ////        chunjiin = Chunjiin(et!!, btn, ic)
