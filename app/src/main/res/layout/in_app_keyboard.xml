@@ -312,7 +312,7 @@
                 android:layout_marginLeft="50.394dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
-                android:text="replay"
+                android:text="home"
                 android:textSize="14sp" />
 
             <Button

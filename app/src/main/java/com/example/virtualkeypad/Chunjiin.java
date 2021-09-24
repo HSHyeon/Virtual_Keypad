@@ -61,7 +61,7 @@ public class Chunjiin
     private String[] btn_name = new String[]{
             "0","1","2","3","4","5","6","7","8","9",
             "star","sharp","left","right","up","down","ok",
-            "delete","replay","back",
+            "delete","home","back",
     };
 
     private Context context;
@@ -172,9 +172,9 @@ public class Chunjiin
             if(input == -1)
                 return;
 
-            // 다시듣기
-            if(input != 18)
-                last_btn_id = input;
+//            // 다시듣기
+//            if(input != 18)
+//                last_btn_id = input;
 
 
 
@@ -257,24 +257,28 @@ public class Chunjiin
                 Log.d("toast..", "delete");
                 Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
             }
-            // 다시듣기
+            // 홈
             else if (input == 18){
-                Log.d("toast..", "replay");
-                // 다시듣기
-                // 아직 아무 버튼도 안누른채로 다시듣기 했다면
-                if(last_btn_id == -1){
-//                    Toast.makeText(et.getContext(), "home", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "replay", Toast.LENGTH_SHORT).show();
-                }
-                // 마지막으로 누른 버튼 다시 듣기
-                else{
-                    Log.d("toast..", btn_name[last_btn_id]);
-                    Toast.makeText(context, btn_name[last_btn_id], Toast.LENGTH_SHORT).show();
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_BACK));
+                Log.d("toast..", "홈");
+                Toast.makeText(context, "home", Toast.LENGTH_SHORT).show();
 
-                }
+//                // 다시듣기
+//                Log.d("toast..", "replay");
+//                // 아직 아무 버튼도 안누른채로 다시듣기 했다면
+//                if(last_btn_id == -1){
+//                    Toast.makeText(context, "replay", Toast.LENGTH_SHORT).show();
+//                }
+//                // 마지막으로 누른 버튼 다시 듣기
+//                else{
+//                    Log.d("toast..", btn_name[last_btn_id]);
+//                    Toast.makeText(context, btn_name[last_btn_id], Toast.LENGTH_SHORT).show();
+//
+//                }
 
-//                BaseInputConnection inputConnection = new BaseInputConnection(et, true);
-//                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME));
+
+
             }
             // https://stackoverflow.com/questions/24493293/input-connection-how-to-delete-selected-text
             // 뒤로가기
