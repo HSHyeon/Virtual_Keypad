@@ -307,7 +307,7 @@
                 android:layout_marginLeft="62.99dp"
                 android:background="#BBBBBB"
                 android:gravity="center"
-                android:text="re"
+                android:text="home"
                 android:textSize="30sp" />
 
             <Button
